@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guide to Creating a New Project in Our Working Environment</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --heading-color: #ffffff;
+      --accent-color: #ff0000;
+      --code-bg: #1e1e1e;
+      --code-border: #333;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      color: var(--heading-color);
+      margin-top: 1.2em;
+      margin-bottom: 0.5em;
+    }
+    p, li {
+      margin-bottom: 1em;
+    }
+    ul {
+      margin-left: 20px;
+      margin-bottom: 1em;
+    }
+    pre {
+      background-color: var(--code-bg);
+      padding: 15px;
+      border: 1px solid var(--code-border);
+      border-radius: 5px;
+      overflow-x: auto;
+      margin-bottom: 1em;
+    }
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      color: var(--text-color);
+    }
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Guide to Creating a New Project in Our Working Environment</h1>
+    
+    <h2>Important Note on CryoSPARC Projects</h2>
+    <p>
+      If multiple users are collecting data for the same project, <strong><span style="color: var(--accent-color);">each user should create their own CryoSPARC project</span></strong>, even if the overall project is the same. This ensures that data is properly managed and avoids conflicts when users are leaving.
+    </p>
+    
+    <h2>Project Folder Structure</h2>
+    <p>Each user has a dedicated folder under:</p>
+    <pre><code>/sbdata/projects/$username</code></pre>
+    <p>
+      When a session is transferred a project folder is automatically generated within the user's folder based on the rawdata session name if the project is not already existing. The session naming follows this convention:
+    </p>
+    <pre><code>$username/YYYY-MM-DD_$username_$project_$comment</code></pre>
+    <p>Where:</p>
+    <ul>
+      <li><code>YYYY-MM-DD</code> is the date in the format <strong>year-month-day</strong> (e.g., <code>2024-12-26</code>).</li>
+      <li><code>$username</code> is the user's name.</li>
+      <li><code>$project</code> is the chosen project name.</li>
+      <li><code>$comment</code> is an optional descriptive comment.</li>
+    </ul>
+    
+    <h3>Folder Organization</h3>
+    <p>Within each project folder, the following subdirectories are structured:</p>
+    <pre><code>/sbdata/projects/$username/$project/
+│-- cryo/
+│   │-- cryosparc/
+│   │-- rawdata/
+│   │-- relion/
+│-- negative_stain/
+    │-- cryosparc/
+    │-- rawdata/
+    │-- relion/</code></pre>
+    
+    <h3>Session Collection and Project Naming</h3>
+    <ul>
+      <li>
+        When collecting a session, the project name can be chosen the <strong><span style="color: var(--accent-color); font-size: larger;"><b>First Time</b></span></strong>.
+      </li>
+      <li>
+        For subsequent sessions, the project name <strong><span style="color: var(--accent-color);"><b>must match exactly (case-sensitive)</b></span></strong> to ensure proper sorting into the same folder.
+      </li>
+      <li>
+        The <strong>CryoSPARC</strong> project should be named the same and should be placed in the <strong>cryosparc</strong> folder under either the <strong>cryo</strong> or <strong>negative_stain</strong> directory, depending on the data type.
+      </li>
+    </ul>
+    
+    <h2>Collecting Data for Other Users</h2>
+    <p>
+      When collecting data for other users the session username should be <strong><span style="color: var(--accent-color);">not</span></strong> the user who actually collects the data but the user who should receive the data. If that user has no cluster account yet, ask a <strong><span style="color: var(--accent-color);">few days in advance</span></strong> for the creation. Normally cryo sessions are not a spontaneous day decision😉
+    </p>
+    
+    <p>
+      By following this structured naming convention, projects remain organized and easily accessible within the working environment.
+    </p>
+  </div>
+</body>
+</html>
