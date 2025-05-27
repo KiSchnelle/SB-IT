@@ -9,16 +9,41 @@
   <div class="container">
     <h1>Guide to Creating a New Project in Our Working Environment</h1>
     
-    <h2>Important Note on CryoSPARC Projects</h2>
-    <p>
-      If multiple users are collecting data for the same project, <strong><span style="color: var(--accent-color);">each user should create their own CryoSPARC project</span></strong>, even if the overall project is the same. This ensures that data is properly managed and avoids conflicts when users are leaving.
-    </p>
+    
     
     <h2>Project Folder Structure</h2>
-    <p>Each user has a dedicated folder under:</p>
+    <p>Each user has a dedicated folder where projects data is stored under:</p>
     <pre><code>/sbdata/projects/$username</code></pre>
     <p>
-      When a session is transferred a project folder is automatically generated within the user's folder based on the rawdata session name if the project is not already existing. The session naming follows this convention:
+      Within this folder the folders of each project are stored.
+      The folder for each project is structured as follows:
+    </p>
+    <pre><code>/sbdata/projects/$username/$project/
+  │-- rawdata/
+  │   │-- negative-stain/
+  │   │-- cryo/
+  │   │-- tomo/
+  │   │-- misc/
+  │-- cryosparc/
+  │-- relion/
+  │-- misc/
+    </code></pre>
+    <p>
+      There are two options of how a new project can be initalized:
+    </p>
+    <ul>
+      <li>
+        <strong>Option 1:</strong>
+        The user uses the initialization script by typing in the terminal: <pre><code>init_project $project</code></pre>
+      </li>
+      <li>
+        <strong>Option 2:</strong>
+        A session transfer is initated. This automatically executes the logic of the initialization script.
+        For this to work properly the correct session naming is crucial.
+      </li>
+    </ul>
+    <p>
+      The session naming follows this convention:
     </p>
     <pre><code>$username/YYYY-MM-DD_$username_$project_$comment</code></pre>
     <p>Where:</p>
@@ -28,19 +53,6 @@
       <li><code>$project</code> is the chosen project name.</li>
       <li><code>$comment</code> is an optional descriptive comment.</li>
     </ul>
-    
-    <h3>Folder Organization</h3>
-    <p>Within each project folder, the following subdirectories are structured:</p>
-    <pre><code>/sbdata/projects/$username/$project/
-│-- cryo/
-│   │-- cryosparc/
-│   │-- rawdata/
-│   │-- relion/
-│-- negative_stain/
-    │-- cryosparc/
-    │-- rawdata/
-    │-- relion/</code></pre>
-    
     <h3>Session Collection and Project Naming</h3>
     <ul>
       <li>
@@ -49,10 +61,15 @@
       <li>
         For subsequent sessions, the project name <strong><span style="color: var(--accent-color);"><b>must match exactly (case-sensitive)</b></span></strong> to ensure proper sorting into the same folder.
       </li>
-      <li>
-        The <strong>CryoSPARC</strong> project should be named the same and should be placed in the <strong>cryosparc</strong> folder under either the <strong>cryo</strong> or <strong>negative_stain</strong> directory, depending on the data type.
-      </li>
     </ul>
+    <h2>Important Note on CryoSPARC Projects</h2>
+    <p>
+      Each project should have <strong><span style="color: var(--accent-color);"><b>one</b></span></strong> cryosparc project. Both cryo and negative stain data should be processes in the <strong><span style="color: var(--accent-color);"><b>same</b></span></strong> cryosparc project.
+      If multiple users are collecting data for the same project, <strong><span style="color: var(--accent-color);">each user should create their own CryoSPARC project</span></strong>, even if the overall project is the same. This ensures that data is properly managed and avoids conflicts when users are leaving.
+      The project should follow the naming sheme of <strong><span style="color: var(--accent-color);"><b>$project-$username</b></span></strong>
+    </p>
+    
+    
     
     <h2>Collecting Data for Other Users</h2>
     <p>
