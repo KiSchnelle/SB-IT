@@ -45,13 +45,14 @@
     <p>
       The session naming follows this convention:
     </p>
-    <pre><code>$username/YYYY-MM-DD_$username_$project_$comment</code></pre>
+    <pre><code>YYYY-MM-DD_$username_$project_$comment</code></pre>
     <p>Where:</p>
     <ul>
       <li><code>YYYY-MM-DD</code> is the date in the format <strong>year-month-day</strong> (e.g., <code>2024-12-26</code>).</li>
       <li><code>$username</code> is the user's name.</li>
       <li><code>$project</code> is the chosen project name.</li>
       <li><code>$comment</code> is an optional descriptive comment.</li>
+      <li><strong><span style="color: var(--accent-color);">!!! No whitespace or special characters other then - are allowed. !!!</span></strong></li>
     </ul>
     <h3>Session Collection and Project Naming</h3>
     <ul>
@@ -64,9 +65,11 @@
     </ul>
     <h2>Important Note on CryoSPARC Projects</h2>
     <p>
-      Each project should have <strong><span style="color: var(--accent-color);"><b>one</b></span></strong> cryosparc project. Both cryo and negative stain data should be processes in the <strong><span style="color: var(--accent-color);"><b>same</b></span></strong> cryosparc project.
-      If multiple users are collecting data for the same project, <strong><span style="color: var(--accent-color);">each user should create their own CryoSPARC project</span></strong>, even if the overall project is the same. This ensures that data is properly managed and avoids conflicts when users are leaving.
-      The project should follow the naming sheme of <strong><span style="color: var(--accent-color);"><b>$project-$username</b></span></strong>
+      Each project should have <strong><span style="color: var(--accent-color);"><b>one</b></span></strong> cryosparc project.
+      Both cryo and negative stain data should be processed in the <strong><span style="color: var(--accent-color);"><b>same</b></span></strong> cryosparc project.
+      If multiple users are collecting data for the same project, <strong><span style="color: var(--accent-color);">each user should create their own CryoSPARC project</span></strong>, even if the overall project is the same.
+      This ensures that data is properly managed and avoids conflicts when users are leaving.
+      The project should follow the naming sheme of: <pre><code>$project-$username</code></pre>
     </p>
     
     
