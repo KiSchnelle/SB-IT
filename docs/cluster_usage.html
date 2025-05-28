@@ -34,6 +34,14 @@
         To see only relevant cryo-EM software, you can use:
     </p>
     <pre><code>spack list -r cryo_em</code></pre>
+    <p>
+        To use GUI applications like <code>relion</code>, you need to set up an X11 forwarding. This can be done by using the <code>-X</code> option when connecting via SSH:
+    </p>
+    <pre><code>ssh -X username@cluster-address</code></pre>
+    <p>
+        After loading the software, you can run the application directly in your terminal. For example, to start <code>relion</code>, you would simply type:
+    </p>
+    <pre><code>relion</code></pre>
 
     <h2>Slurm usage guidelines</h2>
     <ul>
@@ -86,6 +94,7 @@ relion --some-option
     <h2>Links to specific software usage guidelines</h2>
     <ul>
       <li><a href="software/phenix.html">Using Phenix</a></li>
+        <li><a href="software/topaz.html">Using Topaz</a></li>
     </ul>
 
   </div>
