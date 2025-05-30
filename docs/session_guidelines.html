@@ -11,7 +11,7 @@
     
     
     
-    <h2>Project Folder Structure</h2>
+    <h2>Project folder structure and project creation</h2>
     <p>Each user has a dedicated folder where projects data is stored under:</p>
     <pre><code>/sbdata/projects/$username</code></pre>
     <p>
@@ -29,21 +29,19 @@
   │-- misc/
     </code></pre>
     <p>
-      There are two options of how a new project can be initalized:
+      The project can be initialized by the user with the <code>init_project</code> script.
+      You can also look at the help of the script by typing in the terminal: <pre><code>init_project -h/--help</code></pre>
+      The project name can be choosen freely, but is supposed to be short and <strong><span style="color: var(--accent-color); font-size: larger;"><b>only allowed to include "-"</b></span></strong> as a special characters.
+      Also the project name has to be unique, and has to be given in the session name for data collection.
+      Its <strong><span style="color: var(--accent-color); font-size: larger;"><b>case sensitive</b></span></strong>.
+      For example to create a project called <code>my-project</code> you would use the following command:
+      <pre><code>init_project my-project</code></pre>
     </p>
-    <ul>
-      <li>
-        <strong>Option 1:</strong>
-        The user uses the initialization script by typing in the terminal: <pre><code>init_project $project</code></pre>
-      </li>
-      <li>
-        <strong>Option 2:</strong>
-        A session transfer is initated. This automatically executes the logic of the initialization script.
-        For this to work properly the correct session naming is crucial.
-      </li>
-    </ul>
+
+    <h2>Session Collection</h3>
     <p>
       The session naming follows this convention:
+      This naming convention applies to <strong><span style="color: var(--accent-color); font-size: larger;"><b></b>cryo and negative stain</b></span></strong> data collection sessions.
     </p>
     <pre><code>YYYY-MM-DD_$username_$project_$comment</code></pre>
     <p>Where:</p>
@@ -54,19 +52,12 @@
       <li><code>$comment</code> is an optional descriptive comment.</li>
       <li><strong><span style="color: var(--accent-color);">!!! No whitespace or special characters other then - are allowed. !!!</span></strong></li>
     </ul>
-    <h3>Session Collection and Project Naming</h3>
-    <ul>
-      <li>
-        When collecting a session, the project name can be chosen the <strong><span style="color: var(--accent-color); font-size: larger;"><b>First Time</b></span></strong>.
-      </li>
-      <li>
-        For subsequent sessions, the project name <strong><span style="color: var(--accent-color);"><b>must match exactly (case-sensitive)</b></span></strong> to ensure proper sorting into the same folder.
-      </li>
-      <li>
-        Please take your time to double-check the session name before starting the collection.
-        Wrong session naming results in microscope ban till apology sweets have been delivered to the department 😁
-      </li>
-    </ul>
+    
+    <p>
+      Please take your time to double-check the session name before starting the collection.
+      Wrong session naming results in microscope ban till apology sweets have been delivered to the department 😁
+    </p>
+
     <h2>Important Note on CryoSPARC Projects</h2>
     <p>
       Each project should have <strong><span style="color: var(--accent-color);"><b>one</b></span></strong> cryosparc project.

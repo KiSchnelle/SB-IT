@@ -21,7 +21,7 @@
   }
   h1, h2, h3 {
     color: var(--heading-color);
-    margin-top: 1.2em;
+    margin-top: 1.4em;
     margin-bottom: 0.5em;
   }
   p, li {
