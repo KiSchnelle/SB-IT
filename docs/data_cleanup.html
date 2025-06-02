@@ -45,6 +45,30 @@
       If you imported volumes in cryosparc via drag & drop, you will find them in the imports folder of your project.
       Please clean this folder regularly to avoid unnecessary storage usage.
     </p>
+    <h2>Deleting projects</h2>
+
+    
+      <ul><li>
+        To delete a cryoSPARC project you can use the built-in feature in the cryoSPARC web interface.
+        This does not delete the corresponding project folder on the filesystem, so you will have to delete it manually.
+        To do this, navigate to the project folder in the terminal and use the command:
+        <pre><code>rm -rf $project</code></pre>
+        where <code>$project</code> is the name of the project you want to delete.
+      </li></ul>
+      <ul><li>
+        To delete a Relion project, you have to delete the project folder manually.
+        Navigate to the project folder in the terminal and use the command:
+        <pre><code>rm -rf $project</code></pre>
+        where <code>$project</code> is the name of the project you want to delete.
+      </li></ul>
+      <ul><li>
+        To delete a general project folder you can just delete the folder under <code>/sbdata/projects/$username/$project</code> using the command:
+        <pre><code>rm -rf $project</code></pre>
+        where <code>$project</code> is the name of the project you want to delete.
+        Before you do this <strong><span style="color: var(--accent-color); font-size: larger;"><b>delete the cryoSPARC</b></span></strong> project before to remove it from the database.
+        Deleting a project will not delete the corresponding rawdata, radata folders and files inside the project folder are just symlinks to the original files.
+      </li></ul>
+    </p>
   </div>
 </body>
 </html>
