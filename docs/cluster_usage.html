@@ -42,6 +42,17 @@
         After loading the software, you can run the application directly in your terminal. For example, to start <code>relion</code>, you would simply type:
     </p>
     <pre><code>relion</code></pre>
+    <p>
+        To use software that runs on local ports of the cluster (e.g., cryoSPARC interface), you need to set up port forwarding. This can be done by using the <code>-L</code> option when connecting via SSH:
+    </p>
+    <pre><code>ssh -L local_port:localhost:remote_port username@cluster-address</code></pre>
+    <p>
+        For example, to forward port 39000 for cryoSPARC, you would use:
+    </p>
+    <pre><code>ssh -L 39000:localhost:39000 username@cluster-address</code></pre>
+    <p>
+        After setting up port forwarding, you can access the application in your web browser by navigating to <a href="http://localhost:39000" target="_blank">http://localhost:39000</a>.
+    </p>
 
     <h2>Slurm usage guidelines</h2>
     <ul>

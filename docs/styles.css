@@ -44,10 +44,14 @@
     color: var(--text-color);
   }
   a {
-    color: var(--accent-color);
-    text-decoration: none;
+  color: #4da3ff; /* a soft blue, adjust as needed */
+  text-decoration: underline;
+  transition: color 0.2s, background 0.2s;
   }
+
   a:hover {
+    color: #82cfff; /* lighter blue on hover */
+    background: rgba(77,163,255,0.08); /* subtle highlight */
     text-decoration: underline;
   }
 
