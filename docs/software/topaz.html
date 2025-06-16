@@ -13,10 +13,10 @@
     <p>To use topaz on the SB-HPC cluster, you need to load the Topaz module. You can do this by running the following command in your terminal:</p>
     <pre><code>spack load topaz</code></pre>
     <p>Then you can run Topaz commands directly in your terminal.</p>
-    <p>For using topaz with CryoSparc, you have to find the executable in the topaz module directory. You can do this by running the following command:</p>
-    <pre><code>which topaz</code></pre>
-    <p>This will give you the path to the topaz executable. You can then use this path in your CryoSparc job scripts or configure it project-wide in CryoSparc.</p>
-    <p>For example, if the output of the <code>which topaz</code> command is <code>/path/to/topaz</code>, you can just copy this path and paste it into "Path to Topaz executable" in the CryoSparc settings.</p>
+    <p>For using topaz with CryoSparc, you have to use the topaz wrapper script under:</p>
+    <pre><code>/appl/scripts/topaz_cryosparc.sh</code></pre>
+    <p>You can then use this path in your CryoSparc job submission or configure it project-wide in CryoSparc.</p>
+    <p>You can just copy this path and paste it into "Path to Topaz executable" in the CryoSparc settings.</p>
     
   </div>
   <script src="../copy_code.js"></script>
