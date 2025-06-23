@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <li><a href="${base}session_guidelines.html">Session and project guidelines</a></li>
           <li><a href="${base}particle_extraction.html">Extracting Particles</a></li>
           <li><a href="${base}data_cleanup.html">Data Cleanup</a></li>
+          <li><a href="${base}data_transfer.html">Data Transfer</a></li>
         </ul>
       </nav>
     </div>

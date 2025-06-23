@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Transfer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Data Transfer</h1>
+    
+    <h2>Negative-stain Data</h2>
+    <p>
+      For negative-stain data, the transfer is semi-automated(moeller-group only).
+      To transfer the data, you need to run the transfer script on the microscope computer.
+      The script will transfer the data to the cluster and where it will be automatically converted to mrc and clipped to 3700x5000 pixels.
+      The rawdata (tiff and mrc) will be stored under:
+    </p>
+    <pre><code>/sbdata/rawdata/JEM/$session_name</code></pre>
+    <p>
+      In your project folder a session folder will be created under:
+    </p>
+    <pre><code>/sbdata/projects/$username/$project/rawdata/negative-stain/$session_name</code></pre>
+    <p>
+      This folder will include links to the mrc files in the rawdata folder.
+      The session name is the same as the one used for the data collection.
+    </p>
+
+    <h2>Cryo-EM Data</h2>
+    <p>
+      For cryo-EM data, the transfer is fully automated.
+      The rawdata including Atlas, Gridsquare and gain reference will be stored under:
+    </p>
+    <pre><code>/sbdata/rawdata/Elenor/$session_name</code></pre>
+    <p>
+      In your project folder a session folder will be created under:
+    </p>
+    <pre><code>/sbdata/projects/$username/$project/rawdata/cryo/$session_name</code></pre>
+    <p>
+      This folder will include links to the eer files in the rawdata folder.
+      Also a mrc folder will be created where you can find the Atlas, Gridsquare images.
+      The gain reference will be stored in the <code>gain</code> folder.
+      The session name is the same as the one used for the data collection.
+    </p>
+
+  </div>
+  <script src="sidebar.js"></script>
+</body>
+</html>
