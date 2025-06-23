@@ -1,5 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const base = "/SB-IT/docs/"; // Change this if your repo/project name is different
+  // Auto-detect base path for GitHub Pages or local
+  let base = "/";
+  const pathParts = window.location.pathname.split("/");
+  // For GitHub Pages: /SB-IT/...
+  if (pathParts.length > 1 && pathParts[1]) {
+    base = `/${pathParts[1]}/`;
+  } else {
+    base = "/";
+  }
   const sidebarHTML = `
     <div id="sidebar" class="sidebar">
       <nav>
