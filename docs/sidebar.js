@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const base = "/docs/"; // Change this if your repo/project name is different
+  const base = "/SB-IT/docs/"; // Change this if your repo/project name is different
   const sidebarHTML = `
     <div id="sidebar" class="sidebar">
       <nav>
