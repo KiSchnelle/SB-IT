@@ -1,0 +1,24 @@
+h1, h2, h3 {
+  color: var(--heading-color);
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
+}
+p, li {
+  margin-bottom: 1em;
+}
+ul {
+  margin-left: 1.25rem;
+  margin-bottom: 1em;
+}
+pre {
+  background-color: var(--code-bg);
+  padding: 1rem;
+  border: 1px solid var(--code-border);
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+code {
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--text-color);
+}

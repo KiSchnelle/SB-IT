@@ -1,0 +1,9 @@
+a {
+  color: var(--accent-color);
+  text-decoration: underline;
+  transition: color 0.2s, background 0.2s;
+}
+a:hover {
+  color: var(--accent-color-hover);
+  background: rgba(77, 163, 255, 0.08);
+}

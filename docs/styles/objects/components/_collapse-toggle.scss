@@ -1,0 +1,24 @@
+.has-children > .collapse-toggle {
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 0.3rem;
+  font-size: 1rem;
+  color: #aaa;
+  transition: color 0.2s, transform 0.2s;
+  user-select: none;
+}
+.has-children > .collapse-toggle:focus {
+  outline: 2px solid var(--accent-color);
+}
+.has-children > ul {
+  display: none;
+  margin-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+.has-children.expanded > .collapse-toggle {
+  color: var(--accent-color);
+  transform: rotate(90deg);
+}
+.has-children.expanded > ul {
+  display: block;
+}
