@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const pathParts = window.location.pathname.split("/");
   if (pathParts.length > 1 && pathParts[1]) {
     base = `/${pathParts[1]}/`;
+  } else {
+    base = "/";
   }
 
   // Inject main stylesheet
