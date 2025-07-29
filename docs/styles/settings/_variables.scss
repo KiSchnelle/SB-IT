@@ -7,4 +7,8 @@
   --code-bg: #1e1e1e;
   --code-border: #333;
   --font-base: 'Futura', sans-serif;
+
+  /* default background */
+  --bg-image: url('../assets/images/racks_2.png');
+  --bg-overlay: rgba(0, 0, 0, 0.3);  /* tweak the alpha to taste (0.0–1.0) */
 }
