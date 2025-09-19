@@ -17,15 +17,16 @@
       Within this folder the folders of each project are stored.
       The folder for each project is structured as follows:
     </p>
+    <p><strong><span style="color: var(--accent-color); font-size: larger;"><b>Please dont create any other folders inside. If you need custom data please use the misc folders.</b></span></strong></p>
     <pre><code>/sbdata/projects/$username/$project/
   │-- rawdata/
   │   │-- negative-stain/
   │   │-- cryo/
   │   │-- tomo/
   │   │-- misc/
-  │-- cryosparc/
-  │-- relion/
-  │-- misc/
+  │-- cryosparc/ <-- The cryosparc project should be located inside
+  │-- relion/ <-- The relion project should be located inside
+  │-- misc/ <-- Any other data like volumes, maps, notes, etc...
     </code></pre>
     <p>
       Projects not following this structure will <strong><span style="color: var(--accent-color); font-size: larger;"><b>not</b></span></strong> be processed by the cluster automation.
@@ -50,7 +51,7 @@
       <li><code>YYYY-MM-DD</code> is the date in the format <strong>year-month-day</strong> (e.g., <code>2024-12-26</code>).</li>
       <li><code>$username</code> is the user's name.</li>
       <li><code>$project</code> is the chosen project name.</li>
-      <li><code>$comment</code> is an optional descriptive comment.</li>
+      <li><code>$comment</code> is an descriptive comment. Mandatory to add.</li>
       <li><strong><span style="color: var(--accent-color);">!!! No whitespace or special characters other then - are allowed. !!!</span></strong></li>
     </ul>
     
