@@ -17,9 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
             <span class="collapse-toggle" tabindex="0" aria-label="Expand/Collapse">&#9654;</span>
             <a href="${base}cluster_usage.html">Using the SB-HPC cluster</a>
             <ul>
+              <li><a href="${base}software/slurm_usage.html">Slurm usage</a></li>
               <li><a href="${base}software/phenix.html">Using Phenix</a></li>
               <li><a href="${base}software/topaz.html">Using Topaz</a></li>
               <li><a href="${base}software/eman2.html">Using Eman2</a></li>
+              <li><a href="${base}software/cryolo.html">Using cryolo</a></li>
             </ul>
           </li>
           <li><a href="${base}session_guidelines.html">Session and project guidelines</a></li>

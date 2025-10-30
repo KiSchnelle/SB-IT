@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Using cryolo</title>
+  <link rel="preload" href="../assets/images/racks_2.png" as="image">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Using cryolo</h1>
+    
+    <h2>Load the cryolo environment</h2>
+    <p>To use cryolo on the SB-HPC cluster, you need to first load the miniforge3 module. You can do this by running the following command in your terminal:</p>
+    <pre><code>spack load miniforge3</code></pre>
+    <p>After loading the miniforge3 module, you have to source the conda activation script. To find the path to the conda activation script, you can use the following command:</p>
+    <pre><code>which conda</code></pre>
+    <p>
+        This will give you the path to the conda executable. You now have to remove the condabin/conda part from the path and add instead bin/activate to the end of the path.
+        For example, if the output of the <code>which conda</code> command is <code>/path/to/miniforge3/condabin/conda</code>, you can source the activation script like this:
+    </p>
+    <pre><code>source /path/to/miniforge3/bin/activate</code></pre>
+    <p>After sourcing the activation script, you can activate the cryolo environment by running:</p>
+    <pre><code>conda activate cryolo</code></pre>
+    <p>Now you can run cryolo commands directly in your terminal.</p>
+    <p>
+        Napari boxmanager does not support X11 forwarding and has to be installed locally on your PC
+        for more information look at <a href="https://cryolo.readthedocs.io/en/stable/installation.html">https://cryolo.readthedocs.io/en/stable/installation.html</a>
+    </p>
+  </div>
+  <script src="../scripts/copy_code.js"></script>
+  <script src="../scripts/sidebar.js"></script>
+  <script src="../scripts/footer.js"></script>
+</body>
+</html>

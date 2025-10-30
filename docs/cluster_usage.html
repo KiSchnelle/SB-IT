@@ -55,61 +55,6 @@
         After setting up port forwarding, you can access the application in your web browser by navigating to <a href="http://localhost:39000" target="_blank">http://localhost:39000</a>.
     </p>
 
-    <h2>Slurm usage guidelines</h2>
-    <ul>
-        <li>Use the <code>sbatch</code> command to submit jobs to the queue.</li>
-        <li>Use the <code>squeue</code> command to check the status of your jobs.</li>
-        <li>Use the <code>scancel</code> command to cancel jobs.</li>
-        <li>Use the <code>sinfo</code> command to check the status of the cluster nodes.</li>
-    </ul>
-    <p>
-        For interactive jobs, you can use the <code>srun</code> command. For example:
-    </p>
-    <pre><code>srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --pty bash</code></pre>
-    <p>
-        This command will allocate 1 task with 4 CPUs and 8 GB of memory on the <code>p.cryo</code> partition and open a bash shell.
-    </p>
-    <p>
-        To submit a job script, you can create a file (e.g., <code>job.sh</code>) with the following content:
-    </p>
-    <pre><code>#!/bin/bash
-#SBATCH --job-name=my_job
-#SBATCH --output=my_job.out
-#SBATCH --error=my_job.err
-#SBATCH --partition=p.cryo
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=8G
-# Load necessary modules
-spack load relion
-# Run your command
-relion --some-option
-</code></pre>
-    <p>
-        Then, you can submit the job script using:
-    </p>
-    <pre><code>sbatch job.sh</code></pre>
-    <p>
-        Often used additional options are:
-    </p>
-    <ul>
-        <li><code>--time=HH:MM:SS</code> to set a time limit for the job.</li>
-        <li><code>--gres=gpu:X</code> to request GPUs, where <code>X</code> is the number of GPUs needed.</li>
-        <li><code>--nodes=X</code> to specify the number of nodes required.</li>
-        <li><code>--exclusive</code> to request exclusive access to the allocated nodes.</li>
-        <li><code>--tasks-per-node=X</code> to specify the number of tasks per node.</li>
-    </ul>
-    <p>
-        For more information on how to use Slurm, you can refer to the <a href="https://slurm.schedmd.com/documentation.html">Slurm documentation</a>.
-    </p>
-
-    <h2>Links to specific software usage guidelines</h2>
-    <ul>
-        <li><a href="software/phenix.html">Using Phenix</a></li>
-        <li><a href="software/topaz.html">Using Topaz</a></li>
-        <li><a href="software/eman2.html">Using Eman2</a></li>
-    </ul>
-
   </div>
   <script src="scripts/footer.js"></script>
   <script src="scripts/sidebar.js"></script>
