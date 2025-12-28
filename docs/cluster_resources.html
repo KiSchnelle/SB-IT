@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>HPC Cluster Overview</title>
+<link rel="stylesheet" href="styles/main.css">
+<style>
+:root{
+  --bg:#0b1020;
+  --card:#121a33;
+  --card2:#0f1630;
+  --text:#e9ecf7;
+  --muted:#b8c0dd;
+  --line:rgba(255,255,255,.10);
+  --accent:#7aa2ff;
+  --accent2:#34d399;
+  --shadow: 0 10px 25px rgba(0,0,0,.35);
+  --radius:18px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --card2:#ffffff;
+    --text:#141826;
+    --muted:#52607a;
+    --line:rgba(20,24,38,.10);
+    --accent:#2f6bff;
+    --accent2:#059669;
+    --shadow: 0 10px 25px rgba(15, 23, 42, .10);
+  }
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:var(--sans);
+  background: radial-gradient(1200px 600px at 15% 0%, rgba(122,162,255,.25), transparent 45%),
+              radial-gradient(900px 600px at 85% 10%, rgba(52,211,153,.18), transparent 50%),
+              var(--bg);
+  color:var(--text);
+}
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:28px 18px 60px;
+}
+header{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+h1{
+  margin:0;
+  font-size: clamp(26px, 3.2vw, 40px);
+  letter-spacing:-0.02em;
+}
+.sub{
+  color:var(--muted);
+  margin-top:6px;
+  font-size:14px;
+}
+.kicker{
+  font-family:var(--mono);
+  color:var(--muted);
+  font-size:12px;
+}
+.grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:14px;
+  margin:18px 0 28px;
+}
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:14px 16px;
+  min-height:84px;
+}
+.card h3{
+  margin:0;
+  font-size:12px;
+  font-weight:650;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.card .big{
+  margin-top:8px;
+  font-size:22px;
+  font-weight:750;
+  letter-spacing:-0.01em;
+}
+.card .small{
+  margin-top:4px;
+  font-family:var(--mono);
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
+.card.nodes{grid-column: span 3;}
+.card.ram{grid-column: span 3;}
+.card.ssd{grid-column: span 3;}
+.card.hdd{grid-column: span 3;}
+.card.gpu{grid-column: 1 / -1;}
+@media (max-width: 840px){
+  .card.nodes,.card.ram,.card.ssd,.card.hdd{grid-column: span 6;}
+  .card.gpu{grid-column: 1 / -1;}
+}
+@media (max-width: 520px){
+  .card.nodes,.card.ram,.card.ssd,.card.hdd{grid-column: 1 / -1;}
+}
+
+.section{
+  background: rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:16px;
+  margin:16px 0;
+  overflow:hidden;
+}
+.section-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+.section h2{
+  margin:0;
+  font-size:18px;
+  letter-spacing:-0.01em;
+}
+.pill{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:12px;
+}
+.table-wrap{overflow:auto; border-radius: 12px;}
+table.table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  min-width: 860px;
+  background: var(--card2);
+  border:1px solid var(--line);
+  border-radius: 12px;
+  overflow:hidden;
+}
+.table thead th{
+  position:sticky; top:0;
+  background: rgba(122,162,255,.10);
+  backdrop-filter: blur(8px);
+  text-align:left;
+  font-size:12px;
+  color:var(--muted);
+  padding:10px 12px;
+  border-bottom:1px solid var(--line);
+  white-space:nowrap;
+}
+.table tbody td{
+  padding:10px 12px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+  font-size:13px;
+}
+.table tbody tr:hover td{
+  background: rgba(122,162,255,.07);
+}
+.table tbody tr:last-child td{border-bottom:none;}
+.footer{
+  margin-top:22px;
+  color:var(--muted);
+  font-size:12px;
+}
+.searchbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius: 14px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  margin:10px 0 18px;
+}
+.searchbar input{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  color:var(--text);
+  font-size:14px;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius: 999px;
+  border:1px solid var(--line);
+  background: rgba(52,211,153,.08);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size:12px;
+  white-space:nowrap;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <div class="kicker">StrubiOS HPC · Overview</div>
+        <h1>Cluster resources</h1>
+      </div>
+      <div class="badge">🔎 Tip: use the search below to filter nodes</div>
+    </header>
+
+    <div class="grid">
+      <div class="card nodes">
+        <h3>Total nodes</h3>
+        <div class="big">17</div>
+        <div class="small">Headnodes + compute + storage</div>
+      </div>
+      <div class="card ram">
+        <h3>Total memory</h3>
+        <div class="big">20 TB</div>
+        <div class="small">Sum of installed RAM</div>
+      </div>
+      <div class="card ssd">
+        <h3>Compute Scratch NVMe</h3>
+        <div class="big">70 TB</div>
+        <div class="small">Compute Nodes scratch NVMe storage for jobs (approx.)</div>
+      </div>
+      <div class="card hdd">
+        <h3>Data storage</h3>
+        <div class="big">2.6 PB</div>
+        <div class="small">BeeGFS data storage capacity (approx.)</div>
+      </div>
+      <div class="card gpu">
+        <h3>GPU inventory</h3>
+        <div class="big">2× Nvidia RTX A2000, 64× Nvidia A40, 4× Nvidia L40</div>
+        <div class="small">Aggregated across all nodes</div>
+      </div>
+    </div>
+
+    <div class="searchbar">
+      <span style="opacity:.8">Search:</span>
+      <input id="search" type="text" placeholder="e.g. A40, EPYC, 256 GB, InfiniBand, samson…" />
+    </div>
+
+    
+    <section class="section">
+      <div class="section-header">
+        <h2>Headnodes</h2>
+        <div class="pill">2 nodes</div>
+      </div>
+      <div class="table-wrap">
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Node</th>
+      <th>CPU</th>
+      <th>RAM</th>
+      <th>GPU</th>
+      <th>SSD/NVMe</th>
+      <th>HDD</th>
+      <th>Network</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tell101</td>
+      <td>2x AMD EPYC MILAN 7313</td>
+      <td>256 GB</td>
+      <td>Nvidia RTX A2000</td>
+      <td>7.6 TB</td>
+      <td>—</td>
+      <td>10GbE, InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>telly102</td>
+      <td>2x AMD EPYC MILAN 7313</td>
+      <td>256 GB</td>
+      <td>Nvidia RTX A2000</td>
+      <td>7.6 TB</td>
+      <td>—</td>
+      <td>10GbE, InfiniBand HDR</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="section-header">
+        <h2>Compute</h2>
+        <div class="pill">9 nodes</div>
+      </div>
+      <div class="table-wrap">
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Node</th>
+      <th>CPU</th>
+      <th>RAM</th>
+      <th>GPU</th>
+      <th>SSD/NVMe</th>
+      <th>HDD</th>
+      <th>Network</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>bert101</td>
+      <td>2x AMD EPYC MILAN 74F3</td>
+      <td>1 TB</td>
+      <td>8× Nvidia A40</td>
+      <td>7.7 TB</td>
+      <td>—</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>bert102</td>
+      <td>2x AMD EPYC MILAN 74F3</td>
+      <td>1 TB</td>
+      <td>8× Nvidia A40</td>
+      <td>7.7 TB</td>
+      <td>—</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>bert103</td>
+      <td>2x AMD EPYC MILAN 74F3</td>
+      <td>2 TB</td>
+      <td>8× Nvidia A40</td>
+      <td>7.7 TB</td>
+      <td>—</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>bert104</td>
+      <td>2x AMD EPYC MILAN 74F3</td>
+      <td>2 TB</td>
+      <td>8× Nvidia A40</td>
+      <td>7.7 TB</td>
+      <td>—</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>bert105</td>
+      <td>2x AMD EPYC MILAN 74F3</td>
+      <td>1 TB</td>
+      <td>8× Nvidia A40</td>
+      <td>7.7 TB</td>
+      <td>—</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>bert106</td>
+      <td>2x AMD EPYC MILAN 74F3</td>
+      <td>1 TB</td>
+      <td>8× Nvidia A40</td>
+      <td>7.7 TB</td>
+      <td>—</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>bert107</td>
+      <td>2x AMD EPYC MILAN 74F3</td>
+      <td>4 TB</td>
+      <td>8× Nvidia A40</td>
+      <td>7.7 TB</td>
+      <td>—</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>bert108</td>
+      <td>2x AMD EPYC MILAN 74F3</td>
+      <td>4 TB</td>
+      <td>8× Nvidia A40</td>
+      <td>7.7 TB</td>
+      <td>—</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>ernie101</td>
+      <td>2x AMD EPYC GENOA-X 9384X</td>
+      <td>2.2 TB</td>
+      <td>4× Nvidia L40</td>
+      <td>7.7 TB</td>
+      <td>—</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="section-header">
+        <h2>Storage</h2>
+        <div class="pill">6 nodes</div>
+      </div>
+      <div class="table-wrap">
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Node</th>
+      <th>CPU</th>
+      <th>RAM</th>
+      <th>GPU</th>
+      <th>SSD/NVMe</th>
+      <th>HDD</th>
+      <th>Network</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>samson101</td>
+      <td>2x Intel Xeon Gold 6256</td>
+      <td>192 GB</td>
+      <td>—</td>
+      <td>6.4 TB</td>
+      <td>450 TB</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>samson102</td>
+      <td>2x Intel Xeon Gold 6256</td>
+      <td>192 GB</td>
+      <td>—</td>
+      <td>6.4 TB</td>
+      <td>450 TB</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>samson103</td>
+      <td>2x Intel Xeon Gold 6256</td>
+      <td>192 GB</td>
+      <td>—</td>
+      <td>6.4 TB</td>
+      <td>450 TB</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>samson104</td>
+      <td>2x Intel Xeon Gold 6256</td>
+      <td>192 GB</td>
+      <td>—</td>
+      <td>6.4 TB</td>
+      <td>450 TB</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>samson105</td>
+      <td>2x Intel Xeon Gold 6256</td>
+      <td>192 GB</td>
+      <td>—</td>
+      <td>6.4 TB</td>
+      <td>450 TB</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+    <tr>
+      <td>samson106</td>
+      <td>2x Intel Xeon Gold 6256</td>
+      <td>192 GB</td>
+      <td>—</td>
+      <td>6.4 TB</td>
+      <td>450 TB</td>
+      <td>InfiniBand HDR</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+    </section>
+    
+  </div>
+
+<script>
+function filterTables(q){
+  const query = q.trim().toLowerCase();
+  document.querySelectorAll("table.table tbody tr").forEach(tr=>{
+    const txt = tr.innerText.toLowerCase();
+    tr.style.display = (txt.indexOf(query) !== -1) ? "" : "none";
+  });
+}
+window.addEventListener("DOMContentLoaded", ()=>{
+  const input = document.getElementById("search");
+  input.addEventListener("input", (e)=>filterTables(e.target.value));
+});
+</script>
+<script src="scripts/footer.js"></script>
+<script src="scripts/sidebar.js"></script>
+</body>
+</html>
