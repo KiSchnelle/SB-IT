@@ -33,6 +33,10 @@
             <a href="../data_transfer.html">Data Transfer</a>
           </div>
           <div class="nav-group">
+            <div class="nav-label">Support</div>
+            <a href="../troubleshooting.html">Troubleshooting</a>
+          </div>
+          <div class="nav-group">
             <div class="nav-label">Software</div>
             <a href="slurm_usage.html">Slurm usage</a>
             <a href="phenix.html">Using Phenix</a>
@@ -55,6 +59,20 @@
           <p>Then you have to source the environment file to set up the environment variables:</p>
           <pre><code>source $PHENIX_ENV_FILE</code></pre>
           <p>After sourcing the environment file, you can run Phenix commands directly in your terminal.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.2s;">
+          <h2>Run interactively (recommended)</h2>
+          <p>Most Phenix workflows should be run on a compute node, not the headnode. Start an interactive session and then run Phenix there:</p>
+          <pre><code>srun --partition=p.cryo --ntasks=1 --cpus-per-task=8 --mem=16G --pty bash</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.3s;">
+          <h2>Use multiple CPU cores</h2>
+          <p>Request the number of CPU cores in Slurm (see above) and set the thread count before running Phenix:</p>
+          <pre><code>export OMP_NUM_THREADS=8</code></pre>
+          <p>Some Phenix tools also accept a per-command CPU setting. Check the tool help for the exact parameter name:</p>
+          <pre><code>phenix.&lt;tool&gt; --help</code></pre>
         </section>
       </main>
     </div>

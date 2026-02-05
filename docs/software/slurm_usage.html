@@ -33,6 +33,10 @@
             <a href="../data_transfer.html">Data Transfer</a>
           </div>
           <div class="nav-group">
+            <div class="nav-label">Support</div>
+            <a href="../troubleshooting.html">Troubleshooting</a>
+          </div>
+          <div class="nav-group">
             <div class="nav-label">Software</div>
             <a href="slurm_usage.html">Slurm usage</a>
             <a href="phenix.html">Using Phenix</a>
@@ -83,6 +87,120 @@ relion --some-option
             <li><code>--tasks-per-node=X</code> to specify the number of tasks per node.</li>
           </ul>
           <p>For more information on how to use Slurm, you can refer to the <a href="https://slurm.schedmd.com/documentation.html">Slurm documentation</a>.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.2s;">
+          <h2>Check queue and partitions</h2>
+          <p>Use these quick commands to see node states and your jobs:</p>
+          <pre><code>sinfo</code></pre>
+          <pre><code>squeue -u $USER</code></pre>
+          <p>To see detailed information about a job:</p>
+          <pre><code>scontrol show job &lt;job_id&gt;</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.3s;">
+          <h2>Choosing resources</h2>
+          <p>Request only what you need to reduce queue time. Match <code>--cpus-per-task</code> to your software's thread count.</p>
+          <p>Example CPU-only job with explicit time limit:</p>
+          <pre><code>#!/bin/bash
+#SBATCH --job-name=cpu_job
+#SBATCH --partition=p.cryo
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=16G
+#SBATCH --time=04:00:00
+</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.4s;">
+          <h2>Setting time limits</h2>
+          <p>Always set a realistic time limit using <code>--time</code> in your script or command line.</p>
+          <p>In a job script:</p>
+          <pre><code>#SBATCH --time=HH:MM:SS</code></pre>
+          <p>For an interactive session:</p>
+          <pre><code>srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --time=02:00:00 --pty bash</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.5s;">
+          <h2>GPU jobs</h2>
+          <p>Request GPUs with <code>--gres=gpu:X</code> and match CPU and memory to the workload:</p>
+          <pre><code>#!/bin/bash
+#SBATCH --job-name=gpu_job
+#SBATCH --partition=p.cryo
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --gres=gpu:1
+#SBATCH --time=08:00:00
+</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.6s;">
+          <h2>Interactive sessions</h2>
+          <p>Interactive jobs are ideal for testing, GUI tools, and short runs. Always do heavy work on a compute node, not the headnode:</p>
+          <pre><code>srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --time=02:00:00 --pty bash</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.7s;">
+          <h2>Job arrays</h2>
+          <p>Use arrays for many similar jobs (e.g., processing multiple micrographs):</p>
+          <pre><code>#!/bin/bash
+#SBATCH --job-name=array_job
+#SBATCH --partition=p.cryo
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=8G
+#SBATCH --time=02:00:00
+#SBATCH --array=1-100
+
+echo \"Running task ${SLURM_ARRAY_TASK_ID}\"
+</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.8s;">
+          <h2>Output logs</h2>
+          <p>Keep outputs organized with a dedicated logs folder. The <code>%x</code> token is the job name and <code>%j</code> is the job ID.</p>
+          <pre><code>#SBATCH --output=logs/%x_%j.out
+#SBATCH --error=logs/%x_%j.err</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.9s;">
+          <h2>Monitoring and canceling</h2>
+          <p>Common commands while a job is running:</p>
+          <pre><code>squeue -u $USER</code></pre>
+          <pre><code>scancel &lt;job_id&gt;</code></pre>
+          <p>To cancel all your jobs:</p>
+          <pre><code>scancel -u $USER</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 1.0s;">
+          <h2>Hold and release jobs</h2>
+          <p>Pause or resume a queued job without canceling it:</p>
+          <pre><code>scontrol hold &lt;job_id&gt;</code></pre>
+          <pre><code>scontrol release &lt;job_id&gt;</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 1.1s;">
+          <h2>Exclusive node usage</h2>
+          <p>Use exclusive mode when you need the full node to yourself:</p>
+          <pre><code>#SBATCH --exclusive</code></pre>
+          <p>You can also request a specific node if needed:</p>
+          <pre><code>#SBATCH --nodelist=bert101</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 1.2s;">
+          <h2>Post-run resource usage</h2>
+          <p>Check actual CPU, memory, and runtime usage after a job finishes:</p>
+          <pre><code>sacct -j &lt;job_id&gt; --format=JobID,State,Elapsed,MaxRSS,ReqMem,AllocCPUS</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 1.3s;">
+          <h2>Good practices</h2>
+          <ul>
+            <li>Set a realistic <code>--time</code> to avoid premature termination.</li>
+            <li>Use <code>--mem</code> based on actual usage, not peak estimates.</li>
+            <li>Keep outputs and logs organized with <code>--output</code> and <code>--error</code>.</li>
+          </ul>
         </section>
       </main>
     </div>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="eyebrow">StrubiOS - EM Data Processing</div>
+          <div class="brand-title">Guidelines</div>
+        </div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+        <nav class="nav" id="primary-nav">
+          <a href="index.html">Overview</a>
+          <div class="nav-group">
+            <div class="nav-label">Cluster</div>
+            <a href="cluster_usage.html">Using the SB-HPC cluster</a>
+            <a href="cluster_resources.html">Cluster resources</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Sessions</div>
+            <a href="session_guidelines.html">Session and project guidelines</a>
+            <a href="particle_extraction.html">Extracting Particles</a>
+            <a href="data_cleanup.html">Data Cleanup</a>
+            <a href="data_transfer.html">Data Transfer</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Support</div>
+            <a href="troubleshooting.html">Troubleshooting</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Software</div>
+            <a href="software/slurm_usage.html">Slurm usage</a>
+            <a href="software/phenix.html">Using Phenix</a>
+            <a href="software/topaz.html">Using Topaz</a>
+            <a href="software/eman2.html">Using Eman2</a>
+            <a href="software/cryolo.html">Using cryolo</a>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="page-header reveal" style="--delay: 0.05s;">
+          <h1>Troubleshooting</h1>
+          <p class="lead">Common issues and fast fixes for the SB-HPC cluster and EM workflows.</p>
+        </header>
+
+        <section class="section reveal" style="--delay: 0.1s;">
+          <h2>Access and login</h2>
+          <ul>
+            <li>Cannot log in: confirm your university account is active and your public SSH key is added at <a href="https://myrz.uni-osnabrueck.de/">https://myrz.uni-osnabrueck.de/</a>.</li>
+            <li>Permission denied: double-check the correct username and that your SSH key is loaded locally.</li>
+          </ul>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.2s;">
+          <h2>GUI and web interfaces</h2>
+          <ul>
+            <li>GUI apps do not open: ensure XQuartz is running on Mac, then connect with <code>ssh -X username@cluster-address</code>.</li>
+            <li>cryoSPARC web UI not loading: set up port forwarding and open the local URL.</li>
+          </ul>
+          <pre><code>ssh -L 39000:localhost:39000 username@cluster-address</code></pre>
+          <pre><code>http://localhost:39000</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.3s;">
+          <h2>Slurm and job issues</h2>
+          <ul>
+            <li>Job stuck in queue: check partition and resource request with <code>squeue</code> and <code>sinfo</code>.</li>
+            <li>Job ends immediately: review your job output and error logs for the first failure line.</li>
+          </ul>
+          <pre><code>squeue</code></pre>
+          <pre><code>sinfo</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.4s;">
+          <h2>Software loading</h2>
+          <ul>
+            <li>Command not found after loading: confirm the package exists via <code>spack find</code>.</li>
+            <li>Not sure what is available: list cryo-EM packages with <code>spack list -r cryo_em</code>.</li>
+          </ul>
+          <pre><code>spack find</code></pre>
+          <pre><code>spack list -r cryo_em</code></pre>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.5s;">
+          <h2>Storage and cleanup</h2>
+          <ul>
+            <li>Storage full or project too large: clear intermediate results and delete unproductive jobs.</li>
+            <li>Relion trash still full: empty the Trash folder to reclaim space.</li>
+          </ul>
+          <p>See <a href="data_cleanup.html">Data Cleanup</a> for detailed guidance.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.6s;">
+          <h2>Data transfer problems</h2>
+          <ul>
+            <li>Session not appearing: verify the session naming format is correct and matches your project.</li>
+            <li>Links missing in project folder: confirm the project was initialized with <code>init_project</code>.</li>
+          </ul>
+          <p>See <a href="session_guidelines.html">Session Guidelines</a> and <a href="data_transfer.html">Data Transfer</a> for details.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.7s;">
+          <h2>Need help?</h2>
+          <p>If you are still stuck, note the exact error message and the command you ran. Share that with the team for faster support.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="scripts/site.js"></script>
+</body>
+</html>
