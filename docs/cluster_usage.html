@@ -33,6 +33,10 @@
             <a href="data_transfer.html">Data Transfer</a>
           </div>
           <div class="nav-group">
+            <div class="nav-label">Support</div>
+            <a href="troubleshooting.html">Troubleshooting</a>
+          </div>
+          <div class="nav-group">
             <div class="nav-label">Software</div>
             <a href="software/slurm_usage.html">Slurm usage</a>
             <a href="software/phenix.html">Using Phenix</a>
@@ -59,6 +63,20 @@
         </section>
 
         <section class="section reveal" style="--delay: 0.2s;">
+          <h2>Create an SSH key (ed25519 only)</h2>
+          <p>If you do not already have an ed25519 key, create one locally. When asked for the file location, press Enter to accept the default. Adding a passphrase is recommended.</p>
+          <pre><code>ssh-keygen -t ed25519 -C "your_email@uni.edu"</code></pre>
+          <p>To copy the public key, print the contents of the <code>.pub</code> file and paste it into the university portal:</p>
+          <p><strong>macOS / Linux</strong></p>
+          <pre><code>cat ~/.ssh/id_ed25519.pub</code></pre>
+          <p><strong>Windows PowerShell</strong></p>
+          <pre><code>Get-Content $env:USERPROFILE\\.ssh\\id_ed25519.pub</code></pre>
+          <p><strong>Windows Command Prompt</strong></p>
+          <pre><code>type %USERPROFILE%\\.ssh\\id_ed25519.pub</code></pre>
+          <p>If you already have an <code>id_ed25519</code> key, do not create a second one. Just use the existing <code>.pub</code> file.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.3s;">
           <h2>Using software on the cluster</h2>
           <p>We use spack to manage software on the cluster. To load a software package, you can use the following command:</p>
           <pre><code>spack load $software</code></pre>
