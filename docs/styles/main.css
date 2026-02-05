@@ -23,6 +23,12 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -186,6 +192,7 @@ input:focus-visible {
   box-shadow: var(--shadow);
   padding: 36px;
   backdrop-filter: blur(12px);
+  min-width: 0;
 }
 
 .page-header {
@@ -321,6 +328,7 @@ pre {
   font-size: 13px;
   line-height: 1.5;
   overflow: auto;
+  max-width: 100%;
 }
 
 pre code {
@@ -357,12 +365,14 @@ pre code {
   overflow: auto;
   border: 1px solid var(--border);
   background: rgba(15, 23, 42, 0.95);
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 820px;
+  max-width: 100%;
 }
 
 table thead th {
@@ -638,6 +648,14 @@ table tbody tr:hover td {
   pre,
   .code-block {
     font-size: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  table thead th,
+  table tbody td {
+    font-size: 12px;
+    padding: 10px 12px;
   }
 }
 
