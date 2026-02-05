@@ -2,96 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Session and project guidelines</title>
-  <link rel="preload" href="assets/images/racks_2.png" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Session and project guidelines</h1>
-    
-    <h2>Project folder structure and project creation</h2>
-    <p>Each user has a dedicated folder where projects data is stored under:</p>
-    <pre><code>/sbdata/projects/$username</code></pre>
-    <p>
-      Within this folder the folders of each project are stored.
-      The folder for each project is structured as follows:
-    </p>
-    <p><strong><span style="color: var(--accent-color); font-size: larger;"><b>Please dont create any other folders inside. If you need custom data please use the misc folders.</b></span></strong></p>
-    <pre><code>/sbdata/projects/$username/$project/
-  │-- rawdata/
-  │   │-- negative-stain/
-  │   │-- cryo/
-  │   │-- tomo/
-  │   │-- misc/
-  │-- cryosparc/ <-- The cryosparc project should be located inside
-  │-- relion/ <-- The relion project should be located inside
-  │-- misc/ <-- Any other data like volumes, maps, notes, etc...
-    </code></pre>
-    <p>
-      Projects not following this structure will <strong><span style="color: var(--accent-color); font-size: larger;"><b>not</b></span></strong> be processed by the cluster automation.
-      And are <strong><span style="color: var(--accent-color); font-size: larger;"><b>not</b></span></strong> eligible automated data transfer.
-      The project <strong><span style="color: var(--accent-color); font-size: larger;"><b>has to be initialized first</b></span></strong> by the user with the <code>init_project</code> script to be processable for the cluster automation.
-      You can also look at the help of the script by typing in the terminal: <pre><code>init_project -h/--help</code></pre>
-      The project name can be choosen freely, but is supposed to be short and <strong><span style="color: var(--accent-color); font-size: larger;"><b>only allowed to include "-"</b></span></strong> as a special characters.
-      Also the project name has to be unique, and has to be given in the session name for data collection.
-      Its <strong><span style="color: var(--accent-color); font-size: larger;"><b>case sensitive</b></span></strong>.
-      For example to create a project called <code>my-project</code> you would use the following command:
-      <pre><code>init_project my-project</code></pre>
-      <strong><span style="color: var(--accent-color); font-size: larger;"><b>This has to be done before collecting your first session!</b></span></strong> 
-    </p>
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="eyebrow">StrubiOS - EM Data Processing</div>
+          <div class="brand-title">Guidelines</div>
+        </div>
+        <nav class="nav">
+          <a href="index.html">Overview</a>
+          <div class="nav-group">
+            <div class="nav-label">Cluster</div>
+            <a href="cluster_usage.html">Using the SB-HPC cluster</a>
+            <a href="cluster_resources.html">Cluster resources</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Sessions</div>
+            <a href="session_guidelines.html">Session and project guidelines</a>
+            <a href="particle_extraction.html">Extracting Particles</a>
+            <a href="data_cleanup.html">Data Cleanup</a>
+            <a href="data_transfer.html">Data Transfer</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Software</div>
+            <a href="software/slurm_usage.html">Slurm usage</a>
+            <a href="software/phenix.html">Using Phenix</a>
+            <a href="software/topaz.html">Using Topaz</a>
+            <a href="software/eman2.html">Using Eman2</a>
+            <a href="software/cryolo.html">Using cryolo</a>
+          </div>
+        </nav>
+      </aside>
 
-    <h2>Session Collection</h3>
-    <p>
-      The session naming follows this convention:
-      This naming convention applies to <strong><span style="color: var(--accent-color); font-size: larger;"><b></b>cryo and negative stain</b></span></strong> data collection sessions.
-    </p>
-    <pre><code>YYYY-MM-DD_$username_$project_$comment</code></pre>
-    <p>Where:</p>
-    <ul>
-      <li><code>YYYY-MM-DD</code> is the date in the format <strong>year-month-day</strong> (e.g., <code>2024-12-26</code>).</li>
-      <li><code>$username</code> is the user's name.</li>
-      <li><code>$project</code> is the chosen project name.</li>
-      <li><code>$comment</code> is an descriptive comment. Mandatory to add.</li>
-      <li><strong><span style="color: var(--accent-color);">!!! No whitespace or special characters other then - are allowed. !!!</span></strong></li>
-    </ul>
-    
-    <p>
-      Please take your time to double-check the session name before starting the collection.
-      Wrong session naming results in microscope ban till apology sweets have been delivered to the department 😁
-    </p>
+      <main class="content">
+        <header class="page-header reveal" style="--delay: 0.05s;">
+          <h1>Session and project guidelines</h1>
+        </header>
 
-    <h2>Important Note on CryoSPARC Projects</h2>
-    <h3>Cryosparc projects naming and creation</h3>
-    <p>
-      Each project should have <strong><span style="color: var(--accent-color);"><b>one</b></span></strong> cryosparc project.
-      Both cryo and negative stain data should be processed in the <strong><span style="color: var(--accent-color);"><b>same</b></span></strong> cryosparc project.
-      If multiple users are collecting data for the same project, <strong><span style="color: var(--accent-color);">each user should create their own CryoSPARC project if they process on their own</span></strong>, even if the overall project is the same.
-      Only if the processing is done by another person one cryoSPARC project can be used, see more below for collecting data for other users.
-      This ensures that data is properly managed and avoids conflicts when users are leaving.
-      The project should follow the naming sheme of: <pre><code>$project-$username</code></pre>
-    </p>
-    <h3>Cryosparc live sessions</h3>
-    <p>
-      CryosSPARC live sessions are  <strong><span style="color: var(--accent-color);"><b>mandatory</b></span></strong> for cryoEM data collection.
-      The name of the session should be the  <strong><span style="color: var(--accent-color);"><b>same</b></span></strong> as the session name used for data collection..
-    </p>
-    
-    
-    
-    
-    <h2>Collecting Data for Other Users</h2>
-    <p>
-      When collecting data for other users the session username should be <strong><span style="color: var(--accent-color);">not</span></strong> the user who actually collects the data but the user who should receive the data.
-      If that user has no cluster account yet, ask a <strong><span style="color: var(--accent-color);">few days in advance</span></strong> for the creation.
-      Normally cryo sessions are not a spontaneous day decision😉
-    </p>
-    
-    <p>
-      By following this structured naming convention, projects remain organized and easily accessible within the working environment.
-    </p>
+        <section class="section reveal" style="--delay: 0.1s;">
+          <h2>Project folder structure and project creation</h2>
+          <p>Each user has a dedicated folder where projects data is stored under:</p>
+          <pre><code>/sbdata/projects/$username</code></pre>
+          <p>Within this folder the folders of each project are stored. The folder for each project is structured as follows:</p>
+          <div class="callout"><strong>Please dont create any other folders inside. If you need custom data please use the misc folders.</strong></div>
+          <pre><code>/sbdata/projects/$username/$project/
+  |-- rawdata/
+  |   |-- negative-stain/
+  |   |-- cryo/
+  |   |-- tomo/
+  |   |-- misc/
+  |-- cryosparc/ &lt;-- The cryosparc project should be located inside
+  |-- relion/ &lt;-- The relion project should be located inside
+  |-- misc/ &lt;-- Any other data like volumes, maps, notes, etc...</code></pre>
+          <p>Projects not following this structure will <span class="highlight">not</span> be processed by the cluster automation. And are <span class="highlight">not</span> eligible automated data transfer. The project <span class="highlight">has to be initialized first</span> by the user with the <code>init_project</code> script to be processable for the cluster automation. You can also look at the help of the script by typing in the terminal:</p>
+          <pre><code>init_project -h/--help</code></pre>
+          <p>The project name can be choosen freely, but is supposed to be short and <span class="highlight">only allowed to include "-"</span> as a special characters. Also the project name has to be unique, and has to be given in the session name for data collection. Its <span class="highlight">case sensitive</span>.</p>
+          <p>For example to create a project called <code>my-project</code> you would use the following command:</p>
+          <pre><code>init_project my-project</code></pre>
+          <div class="callout"><strong>This has to be done before collecting your first session!</strong></div>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.2s;">
+          <h2>Session Collection</h2>
+          <p>The session naming follows this convention: This naming convention applies to <span class="highlight">cryo and negative stain</span> data collection sessions.</p>
+          <pre><code>YYYY-MM-DD_$username_$project_$comment</code></pre>
+          <p>Where:</p>
+          <ul>
+            <li><code>YYYY-MM-DD</code> is the date in the format <strong>year-month-day</strong> (e.g., <code>2024-12-26</code>).</li>
+            <li><code>$username</code> is the user's name.</li>
+            <li><code>$project</code> is the chosen project name.</li>
+            <li><code>$comment</code> is an descriptive comment. Mandatory to add.</li>
+            <li><strong><span class="highlight">!!! No whitespace or special characters other then - are allowed. !!!</span></strong></li>
+          </ul>
+          <p>Please take your time to double-check the session name before starting the collection. Wrong session naming results in microscope ban till apology sweets have been delivered to the department 😁</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.3s;">
+          <h2>Important Note on CryoSPARC Projects</h2>
+          <h3>Cryosparc projects naming and creation</h3>
+          <p>Each project should have <span class="highlight">one</span> cryosparc project. Both cryo and negative stain data should be processed in the <span class="highlight">same</span> cryosparc project. If multiple users are collecting data for the same project, <span class="highlight">each user should create their own CryoSPARC project if they process on their own</span>, even if the overall project is the same. Only if the processing is done by another person one cryoSPARC project can be used, see more below for collecting data for other users. This ensures that data is properly managed and avoids conflicts when users are leaving. The project should follow the naming sheme of:</p>
+          <pre><code>$project-$username</code></pre>
+          <h3>Cryosparc live sessions</h3>
+          <p>CryosSPARC live sessions are <span class="highlight">mandatory</span> for cryoEM data collection. The name of the session should be the <span class="highlight">same</span> as the session name used for data collection..</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.4s;">
+          <h2>Collecting Data for Other Users</h2>
+          <p>When collecting data for other users the session username should be <span class="highlight">not</span> the user who actually collects the data but the user who should receive the data. If that user has no cluster account yet, ask a <span class="highlight">few days in advance</span> for the creation. Normally cryo sessions are not a spontaneous day decision😉</p>
+          <p>By following this structured naming convention, projects remain organized and easily accessible within the working environment.</p>
+        </section>
+      </main>
+    </div>
   </div>
-  <script src="scripts/sidebar.js"></script>
-  <script src="scripts/footer.js"></script>
+  <script src="scripts/site.js"></script>
 </body>
 </html>

@@ -1,6 +1,0 @@
-@use "../tools/mixins" as *;
-
-.sr-only {
-  @include visually-hidden;
-}
-/* add any one-off helper classes here */

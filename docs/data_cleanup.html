@@ -2,76 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Data Cleanup</title>
-  <link rel="preload" href="assets/images/racks_2.png" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div class="container">
-    <h1>How to Keep Your Data Clean</h1>
-    <h2>Clearing Intermediate Results</h2>
-    <p>
-      It is recommended to use CryoSPARC's built-in feature to clear intermediate results as often as possible.
-      This method helps manage storage more efficiently by clearing data on a job-by-job basis instead of having to clear the entire project at once.
-    </p>
-    <p>
-      You can select and clear multiple jobs at once—typically around 10-15 jobs—by Ctrl-clicking them.
-      This is especially beneficial for refinement jobs, which tend to generate a large amount of intermediate data.
-      Regularly clearing these results can help free up storage space and maintain optimal system performance.
-    </p>
-    <p> In Relion you can use the soft clean function to clear intermediate results. </p>
-    <h2>Deleting Unproductive Jobs</h2>
-    <p>
-    Removing jobs that did not yield useful results is a crucial practice for keeping your storage clean and your project organized.
-    Deleting these unproductive jobs frees up valuable space and minimizes clutter from unnecessary data.
-    </p>
-    <p>
-    Keep in mind that in Relion, deleted jobs are saved in the Trash folder, so you need to empty the Trash folder regularly to free up storage space.
-    </p>
-    <p>
-    Moreover, by eliminating these jobs, you simplify your processing tree, making it easier to navigate and manage your workflow in future steps.
-    </p>
-    <h2>Clearing Extract Jobs</h2>
-    <p>
-    When the extracted particles are no longer needed—such as after completing a project or following a restacking or re-extraction—it is beneficial to clear the extract jobs.
-    This process deletes the actual particle data, which can be quite large, while preserving the job skeleton, including the settings.
-    </p>
-    <p>
-    By clearing these jobs, you free up storage space without losing the ability to rerun the extraction if needed.
-    This is quite important to keep storage usage as low as possible.
-    </p>
-    <h2>Deleting imported volumens</h2>
-    <p>
-      If you have imported volumes that are no longer needed, it is a good practice to delete them. This helps in managing storage effectively and ensures that only relevant data is retained in your project.
-      If you imported volumes in cryosparc via drag & drop, you will find them in the imports folder of your project.
-      Please clean this folder regularly to avoid unnecessary storage usage.
-    </p>
-    <h2>Deleting projects</h2>
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="eyebrow">StrubiOS - EM Data Processing</div>
+          <div class="brand-title">Guidelines</div>
+        </div>
+        <nav class="nav">
+          <a href="index.html">Overview</a>
+          <div class="nav-group">
+            <div class="nav-label">Cluster</div>
+            <a href="cluster_usage.html">Using the SB-HPC cluster</a>
+            <a href="cluster_resources.html">Cluster resources</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Sessions</div>
+            <a href="session_guidelines.html">Session and project guidelines</a>
+            <a href="particle_extraction.html">Extracting Particles</a>
+            <a href="data_cleanup.html">Data Cleanup</a>
+            <a href="data_transfer.html">Data Transfer</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Software</div>
+            <a href="software/slurm_usage.html">Slurm usage</a>
+            <a href="software/phenix.html">Using Phenix</a>
+            <a href="software/topaz.html">Using Topaz</a>
+            <a href="software/eman2.html">Using Eman2</a>
+            <a href="software/cryolo.html">Using cryolo</a>
+          </div>
+        </nav>
+      </aside>
 
-    
-      <ul><li>
-        To delete a cryoSPARC project you can use the built-in feature in the cryoSPARC web interface.
-        This does not delete the corresponding project folder on the filesystem, so you will have to delete it manually.
-        To do this, navigate to the project folder in the terminal and use the command:
-        <pre><code>rm -rf $project</code></pre>
-        where <code>$project</code> is the name of the project you want to delete.
-      </li></ul>
-      <ul><li>
-        To delete a Relion project, you have to delete the project folder manually.
-        Navigate to the project folder in the terminal and use the command:
-        <pre><code>rm -rf $project</code></pre>
-        where <code>$project</code> is the name of the project you want to delete.
-      </li></ul>
-      <ul><li>
-        To delete a general project folder you can just delete the folder under <code>/sbdata/projects/$username/$project</code> using the command:
-        <pre><code>rm -rf $project</code></pre>
-        where <code>$project</code> is the name of the project you want to delete.
-        Before you do this <strong><span style="color: var(--accent-color); font-size: larger;"><b>delete the cryoSPARC</b></span></strong> project before to remove it from the database.
-        Deleting a project will not delete the corresponding rawdata, radata folders and files inside the project folder are just symlinks to the original files.
-      </li></ul>
-    </p>
+      <main class="content">
+        <header class="page-header reveal" style="--delay: 0.05s;">
+          <h1>How to Keep Your Data Clean</h1>
+        </header>
+
+        <section class="section reveal" style="--delay: 0.1s;">
+          <h2>Clearing Intermediate Results</h2>
+          <p>It is recommended to use CryoSPARC's built-in feature to clear intermediate results as often as possible. This method helps manage storage more efficiently by clearing data on a job-by-job basis instead of having to clear the entire project at once.</p>
+          <p>You can select and clear multiple jobs at once-typically around 10-15 jobs-by Ctrl-clicking them. This is especially beneficial for refinement jobs, which tend to generate a large amount of intermediate data. Regularly clearing these results can help free up storage space and maintain optimal system performance.</p>
+          <p>In Relion you can use the soft clean function to clear intermediate results.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.2s;">
+          <h2>Deleting Unproductive Jobs</h2>
+          <p>Removing jobs that did not yield useful results is a crucial practice for keeping your storage clean and your project organized. Deleting these unproductive jobs frees up valuable space and minimizes clutter from unnecessary data.</p>
+          <p>Keep in mind that in Relion, deleted jobs are saved in the Trash folder, so you need to empty the Trash folder regularly to free up storage space.</p>
+          <p>Moreover, by eliminating these jobs, you simplify your processing tree, making it easier to navigate and manage your workflow in future steps.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.3s;">
+          <h2>Clearing Extract Jobs</h2>
+          <p>When the extracted particles are no longer needed-such as after completing a project or following a restacking or re-extraction-it is beneficial to clear the extract jobs. This process deletes the actual particle data, which can be quite large, while preserving the job skeleton, including the settings.</p>
+          <p>By clearing these jobs, you free up storage space without losing the ability to rerun the extraction if needed. This is quite important to keep storage usage as low as possible.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.4s;">
+          <h2>Deleting imported volumens</h2>
+          <p>If you have imported volumes that are no longer needed, it is a good practice to delete them. This helps in managing storage effectively and ensures that only relevant data is retained in your project. If you imported volumes in cryosparc via drag &amp; drop, you will find them in the imports folder of your project. Please clean this folder regularly to avoid unnecessary storage usage.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.5s;">
+          <h2>Deleting projects</h2>
+          <ul>
+            <li>
+              To delete a cryoSPARC project you can use the built-in feature in the cryoSPARC web interface. This does not delete the corresponding project folder on the filesystem, so you will have to delete it manually. To do this, navigate to the project folder in the terminal and use the command:
+              <pre><code>rm -rf $project</code></pre>
+              where <code>$project</code> is the name of the project you want to delete.
+            </li>
+            <li>
+              To delete a Relion project, you have to delete the project folder manually. Navigate to the project folder in the terminal and use the command:
+              <pre><code>rm -rf $project</code></pre>
+              where <code>$project</code> is the name of the project you want to delete.
+            </li>
+            <li>
+              To delete a general project folder you can just delete the folder under <code>/sbdata/projects/$username/$project</code> using the command:
+              <pre><code>rm -rf $project</code></pre>
+              where <code>$project</code> is the name of the project you want to delete. Before you do this <strong><span class="highlight">delete the cryoSPARC</span></strong> project before to remove it from the database. Deleting a project will not delete the corresponding rawdata, radata folders and files inside the project folder are just symlinks to the original files.
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
   </div>
-  <script src="scripts/footer.js"></script>
-  <script src="scripts/sidebar.js"></script>
+  <script src="scripts/site.js"></script>
 </body>
 </html>

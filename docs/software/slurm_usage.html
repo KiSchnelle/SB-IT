@@ -2,30 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Slurm usage</title>
-  <link rel="preload" href="../assets/images/racks_2.png" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Slurm usage guidelines</h1>
-    <ul>
-        <li>Use the <code>sbatch</code> command to submit jobs to the queue.</li>
-        <li>Use the <code>squeue</code> command to check the status of your jobs.</li>
-        <li>Use the <code>scancel</code> command to cancel jobs.</li>
-        <li>Use the <code>sinfo</code> command to check the status of the cluster nodes.</li>
-    </ul>
-    <p>
-        For interactive jobs, you can use the <code>srun</code> command. For example:
-    </p>
-    <pre><code>srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --pty bash</code></pre>
-    <p>
-        This command will allocate 1 task with 4 CPUs and 8 GB of memory on the <code>p.cryo</code> partition and open a bash shell.
-    </p>
-    <p>
-        To submit a job script, you can create a file (e.g., <code>job.sh</code>) with the following content:
-    </p>
-    <pre><code>#!/bin/bash
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="eyebrow">StrubiOS - EM Data Processing</div>
+          <div class="brand-title">Guidelines</div>
+        </div>
+        <nav class="nav">
+          <a href="../index.html">Overview</a>
+          <div class="nav-group">
+            <div class="nav-label">Cluster</div>
+            <a href="../cluster_usage.html">Using the SB-HPC cluster</a>
+            <a href="../cluster_resources.html">Cluster resources</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Sessions</div>
+            <a href="../session_guidelines.html">Session and project guidelines</a>
+            <a href="../particle_extraction.html">Extracting Particles</a>
+            <a href="../data_cleanup.html">Data Cleanup</a>
+            <a href="../data_transfer.html">Data Transfer</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Software</div>
+            <a href="slurm_usage.html">Slurm usage</a>
+            <a href="phenix.html">Using Phenix</a>
+            <a href="topaz.html">Using Topaz</a>
+            <a href="eman2.html">Using Eman2</a>
+            <a href="cryolo.html">Using cryolo</a>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="page-header reveal" style="--delay: 0.05s;">
+          <h1>Slurm usage guidelines</h1>
+        </header>
+
+        <section class="section reveal" style="--delay: 0.1s;">
+          <ul>
+            <li>Use the <code>sbatch</code> command to submit jobs to the queue.</li>
+            <li>Use the <code>squeue</code> command to check the status of your jobs.</li>
+            <li>Use the <code>scancel</code> command to cancel jobs.</li>
+            <li>Use the <code>sinfo</code> command to check the status of the cluster nodes.</li>
+          </ul>
+          <p>For interactive jobs, you can use the <code>srun</code> command. For example:</p>
+          <pre><code>srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --pty bash</code></pre>
+          <p>This command will allocate 1 task with 4 CPUs and 8 GB of memory on the <code>p.cryo</code> partition and open a bash shell.</p>
+          <p>To submit a job script, you can create a file (e.g., <code>job.sh</code>) with the following content:</p>
+          <pre><code>#!/bin/bash
 #SBATCH --job-name=my_job
 #SBATCH --output=my_job.out
 #SBATCH --error=my_job.err
@@ -38,27 +71,21 @@ spack load relion
 # Run your command
 relion --some-option
 </code></pre>
-    <p>
-        Then, you can submit the job script using:
-    </p>
-    <pre><code>sbatch job.sh</code></pre>
-    <p>
-        Often used additional options are:
-    </p>
-    <ul>
-        <li><code>--time=HH:MM:SS</code> to set a time limit for the job.</li>
-        <li><code>--gres=gpu:X</code> to request GPUs, where <code>X</code> is the number of GPUs needed.</li>
-        <li><code>--nodes=X</code> to specify the number of nodes required.</li>
-        <li><code>--exclusive</code> to request exclusive access to the allocated nodes.</li>
-        <li><code>--tasks-per-node=X</code> to specify the number of tasks per node.</li>
-    </ul>
-    <p>
-        For more information on how to use Slurm, you can refer to the <a href="https://slurm.schedmd.com/documentation.html">Slurm documentation</a>.
-    </p>
-
+          <p>Then, you can submit the job script using:</p>
+          <pre><code>sbatch job.sh</code></pre>
+          <p>Often used additional options are:</p>
+          <ul>
+            <li><code>--time=HH:MM:SS</code> to set a time limit for the job.</li>
+            <li><code>--gres=gpu:X</code> to request GPUs, where <code>X</code> is the number of GPUs needed.</li>
+            <li><code>--nodes=X</code> to specify the number of nodes required.</li>
+            <li><code>--exclusive</code> to request exclusive access to the allocated nodes.</li>
+            <li><code>--tasks-per-node=X</code> to specify the number of tasks per node.</li>
+          </ul>
+          <p>For more information on how to use Slurm, you can refer to the <a href="https://slurm.schedmd.com/documentation.html">Slurm documentation</a>.</p>
+        </section>
+      </main>
+    </div>
   </div>
-  <script src="../scripts/footer.js"></script>
-  <script src="../scripts/sidebar.js"></script>
-  <script src="../scripts/copy_code.js"></script>
+  <script src="../scripts/site.js"></script>
 </body>
 </html>
