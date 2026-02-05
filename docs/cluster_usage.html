@@ -2,62 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Using the SB-HPC cluster</title>
-  <link rel="preload" href="assets/images/racks_2.png" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Using the SB-HPC cluster</h1>
-    
-    <h2>Getting access to the SB-HPC cluster</h2>
-    To get access to the cluster you need to have done the following:
-    <ul>
-      <li>Have a university account</li>
-      <li>Filled for access for the SB-cluster with the division</li>
-      <li>Put your public ssh key into your account under the website <a href="https://myrz.uni-osnabrueck.de/">https://myrz.uni-osnabrueck.de/</a></li>
-    </ul>
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="eyebrow">StrubiOS - EM Data Processing</div>
+          <div class="brand-title">Guidelines</div>
+        </div>
+        <nav class="nav">
+          <a href="index.html">Overview</a>
+          <div class="nav-group">
+            <div class="nav-label">Cluster</div>
+            <a href="cluster_usage.html">Using the SB-HPC cluster</a>
+            <a href="cluster_resources.html">Cluster resources</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Sessions</div>
+            <a href="session_guidelines.html">Session and project guidelines</a>
+            <a href="particle_extraction.html">Extracting Particles</a>
+            <a href="data_cleanup.html">Data Cleanup</a>
+            <a href="data_transfer.html">Data Transfer</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Software</div>
+            <a href="software/slurm_usage.html">Slurm usage</a>
+            <a href="software/phenix.html">Using Phenix</a>
+            <a href="software/topaz.html">Using Topaz</a>
+            <a href="software/eman2.html">Using Eman2</a>
+            <a href="software/cryolo.html">Using cryolo</a>
+          </div>
+        </nav>
+      </aside>
 
-    <h2>Using software on the cluster</h2>
-    <p>
-        We use spack to manage software on the cluster. To load a software package, you can use the following command:
-    </p>
-    <pre><code>spack load $software</code></pre>
-    <p>
-        For example, to load the <code>relion</code> package, you would use:
-    </p>
-    <pre><code>spack load relion</code></pre>
-    <p>
-        To see which software packages are available, you can use:
-    </p>
-    <pre><code>spack find</code></pre>
-    <p>
-        To see only relevant cryo-EM software, you can use:
-    </p>
-    <pre><code>spack list -r cryo_em</code></pre>
-    <p>
-        To use GUI applications like <code>relion</code>, you need to set up an X11 forwarding(Xquartz on Mac). This can be done by using the <code>-X</code> option when connecting via SSH:
-    </p>
-    <pre><code>ssh -X username@cluster-address</code></pre>
-    <p>
-        After loading the software, you can run the application directly in your terminal. For example, to start <code>relion</code>, you would simply type:
-    </p>
-    <pre><code>relion</code></pre>
-    <p>
-        To use software that runs on local ports of the cluster (e.g., cryoSPARC interface), you need to set up port forwarding. This can be done by using the <code>-L</code> option when connecting via SSH:
-    </p>
-    <pre><code>ssh -L local_port:localhost:remote_port username@cluster-address</code></pre>
-    <p>
-        For example, to forward port 39000 for cryoSPARC, you would use:
-    </p>
-    <pre><code>ssh -L 39000:localhost:39000 username@cluster-address</code></pre>
-    <p>
-        After setting up port forwarding, you can access the application in your web browser by navigating to <a href="http://localhost:39000" target="_blank">http://localhost:39000</a>.
-    </p>
+      <main class="content">
+        <header class="page-header reveal" style="--delay: 0.05s;">
+          <h1>Using the SB-HPC cluster</h1>
+        </header>
 
+        <section class="section reveal" style="--delay: 0.1s;">
+          <h2>Getting access to the SB-HPC cluster</h2>
+          <p>To get access to the cluster you need to have done the following:</p>
+          <ul>
+            <li>Have a university account</li>
+            <li>Filled for access for the SB-cluster with the division</li>
+            <li>Put your public ssh key into your account under the website <a href="https://myrz.uni-osnabrueck.de/">https://myrz.uni-osnabrueck.de/</a></li>
+          </ul>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.2s;">
+          <h2>Using software on the cluster</h2>
+          <p>We use spack to manage software on the cluster. To load a software package, you can use the following command:</p>
+          <pre><code>spack load $software</code></pre>
+          <p>For example, to load the <code>relion</code> package, you would use:</p>
+          <pre><code>spack load relion</code></pre>
+          <p>To see which software packages are available, you can use:</p>
+          <pre><code>spack find</code></pre>
+          <p>To see only relevant cryo-EM software, you can use:</p>
+          <pre><code>spack list -r cryo_em</code></pre>
+          <p>To use GUI applications like <code>relion</code>, you need to set up an X11 forwarding(Xquartz on Mac). This can be done by using the <code>-X</code> option when connecting via SSH:</p>
+          <pre><code>ssh -X username@cluster-address</code></pre>
+          <p>After loading the software, you can run the application directly in your terminal. For example, to start <code>relion</code>, you would simply type:</p>
+          <pre><code>relion</code></pre>
+          <p>To use software that runs on local ports of the cluster (e.g., cryoSPARC interface), you need to set up port forwarding. This can be done by using the <code>-L</code> option when connecting via SSH:</p>
+          <pre><code>ssh -L local_port:localhost:remote_port username@cluster-address</code></pre>
+          <p>For example, to forward port 39000 for cryoSPARC, you would use:</p>
+          <pre><code>ssh -L 39000:localhost:39000 username@cluster-address</code></pre>
+          <p>After setting up port forwarding, you can access the application in your web browser by navigating to <a href="http://localhost:39000" target="_blank" rel="noreferrer">http://localhost:39000</a>.</p>
+        </section>
+      </main>
+    </div>
   </div>
-  <script src="scripts/footer.js"></script>
-  <script src="scripts/sidebar.js"></script>
-  <script src="scripts/copy_code.js"></script>
+  <script src="scripts/site.js"></script>
 </body>
 </html>

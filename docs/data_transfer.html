@@ -2,55 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Data Transfer</title>
-  <link rel="preload" href="assets/images/racks_2.png" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Data Transfer</h1>
-    
-    <p><strong><span style="color: var(--accent-color); font-size: larger;"><b>Please read the session guidelines before creating a session.</b></span></strong></p>
-    <ul>
-        <li><a href="session_guidelines.html">Session Guidelines</a></li>
-    </ul>
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="eyebrow">StrubiOS - EM Data Processing</div>
+          <div class="brand-title">Guidelines</div>
+        </div>
+        <nav class="nav">
+          <a href="index.html">Overview</a>
+          <div class="nav-group">
+            <div class="nav-label">Cluster</div>
+            <a href="cluster_usage.html">Using the SB-HPC cluster</a>
+            <a href="cluster_resources.html">Cluster resources</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Sessions</div>
+            <a href="session_guidelines.html">Session and project guidelines</a>
+            <a href="particle_extraction.html">Extracting Particles</a>
+            <a href="data_cleanup.html">Data Cleanup</a>
+            <a href="data_transfer.html">Data Transfer</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Software</div>
+            <a href="software/slurm_usage.html">Slurm usage</a>
+            <a href="software/phenix.html">Using Phenix</a>
+            <a href="software/topaz.html">Using Topaz</a>
+            <a href="software/eman2.html">Using Eman2</a>
+            <a href="software/cryolo.html">Using cryolo</a>
+          </div>
+        </nav>
+      </aside>
 
-    <h2>Negative-stain Data</h2>
-    <p>
-      For negative-stain data, the transfer is semi-automated(moeller-group only).
-      To transfer the data, you need to run the transfer script on the microscope computer.
-      The script will transfer the data to the cluster and where it will be automatically converted to mrc and clipped to 3700x5000 pixels.
-      The rawdata (tiff and mrc) will be stored under:
-    </p>
-    <pre><code>/sbdata/rawdata/JEM/$session_name</code></pre>
-    <p>
-      In your project folder a session folder will be created under:
-    </p>
-    <pre><code>/sbdata/projects/$username/$project/rawdata/negative-stain/$session_name</code></pre>
-    <p>
-      This folder will include links to the mrc files in the rawdata folder.
-      The session name is the same as the one used for the data collection.
-    </p>
+      <main class="content">
+        <header class="page-header reveal" style="--delay: 0.05s;">
+          <h1>Data Transfer</h1>
+          <p class="lead">Please read the session guidelines before creating a session.</p>
+        </header>
 
-    <h2>Cryo-EM Data</h2>
-    <p>
-      For cryo-EM data, the transfer is fully automated.
-      The rawdata including Atlas, Gridsquare and gain reference will be stored under:
-    </p>
-    <pre><code>/sbdata/rawdata/Elenor/$session_name</code></pre>
-    <p>
-      In your project folder a session folder will be created under:
-    </p>
-    <pre><code>/sbdata/projects/$username/$project/rawdata/cryo/$session_name</code></pre>
-    <p>
-      This folder will include links to the eer files in the rawdata folder.
-      Also a mrc folder will be created where you can find the Atlas, Gridsquare images.
-      The gain reference will be stored in the <code>gain</code> folder.
-      The session name is the same as the one used for the data collection.
-    </p>
+        <section class="section callout reveal" style="--delay: 0.1s;">
+          <strong>Session Guidelines:</strong> <a href="session_guidelines.html">Session Guidelines</a>
+        </section>
 
+        <section class="section reveal" style="--delay: 0.2s;">
+          <h2>Negative-stain Data</h2>
+          <p>For negative-stain data, the transfer is semi-automated(moeller-group only). To transfer the data, you need to run the transfer script on the microscope computer. The script will transfer the data to the cluster and where it will be automatically converted to mrc and clipped to 3700x5000 pixels. The rawdata (tiff and mrc) will be stored under:</p>
+          <pre><code>/sbdata/rawdata/JEM/$session_name</code></pre>
+          <p>In your project folder a session folder will be created under:</p>
+          <pre><code>/sbdata/projects/$username/$project/rawdata/negative-stain/$session_name</code></pre>
+          <p>This folder will include links to the mrc files in the rawdata folder. The session name is the same as the one used for the data collection.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.3s;">
+          <h2>Cryo-EM Data</h2>
+          <p>For cryo-EM data, the transfer is fully automated. The rawdata including Atlas, Gridsquare and gain reference will be stored under:</p>
+          <pre><code>/sbdata/rawdata/Elenor/$session_name</code></pre>
+          <p>In your project folder a session folder will be created under:</p>
+          <pre><code>/sbdata/projects/$username/$project/rawdata/cryo/$session_name</code></pre>
+          <p>This folder will include links to the eer files in the rawdata folder. Also a mrc folder will be created where you can find the Atlas, Gridsquare images. The gain reference will be stored in the <code>gain</code> folder. The session name is the same as the one used for the data collection.</p>
+        </section>
+      </main>
+    </div>
   </div>
-  <script src="scripts/sidebar.js"></script>
-  <script src="scripts/footer.js"></script>
+  <script src="scripts/site.js"></script>
 </body>
 </html>

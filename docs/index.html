@@ -2,31 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Guidelines for EM Data Processing</title>
-  <link rel="preload" href="assets/images/racks_2.png" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Guidelines for EM Data Processing</h1>
-    <p>Welcome to StrubiOS guidelines for EM data processing. Select a topic below:</p>
-    <ul>
-      <li><a href="cluster_usage.html">Using the SB-HPC cluster</a></li>
-      <ul>
-        <li><a href="software/slurm_usage.html">Slurm usage</a></li>
-        <li><a href="software/phenix.html">Using Phenix</a></li>
-        <li><a href="software/topaz.html">Using Topaz</a></li>
-        <li><a href="software/eman2.html">Using Eman2</a></li>
-        <li><a href="software/cryolo.html">Using cryolo</a></li>
-      </ul>
-      <li><a href="cluster_resources.html">Cluster resources</a></li>
-      <li><a href="session_guidelines.html">Session and project guidelines</a></li>
-      <li><a href="particle_extraction.html">Extracting Particles</a></li>
-      <li><a href="data_cleanup.html">Data Cleanup</a></li>
-      <li><a href="data_transfer.html">Data Transfer</a></li>
-    </ul>
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="eyebrow">StrubiOS - EM Data Processing</div>
+          <div class="brand-title">Guidelines</div>
+        </div>
+        <nav class="nav">
+          <a href="index.html">Overview</a>
+          <div class="nav-group">
+            <div class="nav-label">Cluster</div>
+            <a href="cluster_usage.html">Using the SB-HPC cluster</a>
+            <a href="cluster_resources.html">Cluster resources</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Sessions</div>
+            <a href="session_guidelines.html">Session and project guidelines</a>
+            <a href="particle_extraction.html">Extracting Particles</a>
+            <a href="data_cleanup.html">Data Cleanup</a>
+            <a href="data_transfer.html">Data Transfer</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Software</div>
+            <a href="software/slurm_usage.html">Slurm usage</a>
+            <a href="software/phenix.html">Using Phenix</a>
+            <a href="software/topaz.html">Using Topaz</a>
+            <a href="software/eman2.html">Using Eman2</a>
+            <a href="software/cryolo.html">Using cryolo</a>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="overview-hero reveal" style="--delay: 0.05s;">
+          <div>
+            <h1>Guidelines for EM Data Processing</h1>
+            <p class="lead">Welcome to StrubiOS guidelines for EM data processing. Select a topic below:</p>
+            <div class="overview-actions">
+              <a class="link-chip" href="cluster_usage.html">Using the SB-HPC cluster</a>
+              <a class="link-chip" href="session_guidelines.html">Session and project guidelines</a>
+              <a class="link-chip" href="cluster_resources.html">Cluster resources</a>
+            </div>
+          </div>
+          <div class="overview-panel">
+            <h2>Software quick links</h2>
+            <ul class="link-list">
+              <li><a href="software/slurm_usage.html">Slurm usage</a></li>
+              <li><a href="software/phenix.html">Using Phenix</a></li>
+              <li><a href="software/topaz.html">Using Topaz</a></li>
+              <li><a href="software/eman2.html">Using Eman2</a></li>
+              <li><a href="software/cryolo.html">Using cryolo</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.15s;">
+          <div class="category-grid">
+            <div class="category-card">
+              <h2>Cluster</h2>
+              <div class="link-stack">
+                <a href="cluster_usage.html">Using the SB-HPC cluster</a>
+                <a href="cluster_resources.html">Cluster resources</a>
+              </div>
+            </div>
+            <div class="category-card">
+              <h2>Sessions</h2>
+              <div class="link-stack">
+                <a href="session_guidelines.html">Session and project guidelines</a>
+                <a href="particle_extraction.html">Extracting Particles</a>
+                <a href="data_cleanup.html">Data Cleanup</a>
+                <a href="data_transfer.html">Data Transfer</a>
+              </div>
+            </div>
+            <div class="category-card">
+              <h2>Software</h2>
+              <div class="link-stack">
+                <a href="software/slurm_usage.html">Slurm usage</a>
+                <a href="software/phenix.html">Using Phenix</a>
+                <a href="software/topaz.html">Using Topaz</a>
+                <a href="software/eman2.html">Using Eman2</a>
+                <a href="software/cryolo.html">Using cryolo</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
   </div>
-  <script src="scripts/sidebar.js"></script>
-  <script src="scripts/footer.js"></script>
+  <script src="scripts/site.js"></script>
 </body>
 </html>

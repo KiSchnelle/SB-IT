@@ -2,24 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Using Phenix</title>
-  <link rel="preload" href="../assets/images/racks_2.png" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Using Phenix</h1>
-    
-    <h2>Load the phenix module</h2>
-    <p>To use Phenix on the SB-HPC cluster, you need to load the Phenix module. You can do this by running the following command in your terminal:</p>
-    <pre><code>spack load phenix</code></pre>
-    <p>Then you have to source the environment file to set up the environment variables:</p>
-    <pre><code>source $PHENIX_ENV_FILE</code></pre>
-    <p>After sourcing the environment file, you can run Phenix commands directly in your terminal.</p>
-    
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="eyebrow">StrubiOS - EM Data Processing</div>
+          <div class="brand-title">Guidelines</div>
+        </div>
+        <nav class="nav">
+          <a href="../index.html">Overview</a>
+          <div class="nav-group">
+            <div class="nav-label">Cluster</div>
+            <a href="../cluster_usage.html">Using the SB-HPC cluster</a>
+            <a href="../cluster_resources.html">Cluster resources</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Sessions</div>
+            <a href="../session_guidelines.html">Session and project guidelines</a>
+            <a href="../particle_extraction.html">Extracting Particles</a>
+            <a href="../data_cleanup.html">Data Cleanup</a>
+            <a href="../data_transfer.html">Data Transfer</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Software</div>
+            <a href="slurm_usage.html">Slurm usage</a>
+            <a href="phenix.html">Using Phenix</a>
+            <a href="topaz.html">Using Topaz</a>
+            <a href="eman2.html">Using Eman2</a>
+            <a href="cryolo.html">Using cryolo</a>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="page-header reveal" style="--delay: 0.05s;">
+          <h1>Using Phenix</h1>
+        </header>
+
+        <section class="section reveal" style="--delay: 0.1s;">
+          <h2>Load the phenix module</h2>
+          <p>To use Phenix on the SB-HPC cluster, you need to load the Phenix module. You can do this by running the following command in your terminal:</p>
+          <pre><code>spack load phenix</code></pre>
+          <p>Then you have to source the environment file to set up the environment variables:</p>
+          <pre><code>source $PHENIX_ENV_FILE</code></pre>
+          <p>After sourcing the environment file, you can run Phenix commands directly in your terminal.</p>
+        </section>
+      </main>
+    </div>
   </div>
-  <script src="../scripts/copy_code.js"></script>
-  <script src="../scripts/sidebar.js"></script>
-  <script src="../scripts/footer.js"></script>
+  <script src="../scripts/site.js"></script>
 </body>
 </html>
