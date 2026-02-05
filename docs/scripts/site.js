@@ -8,6 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  document.querySelectorAll(".nav-toggle").forEach((toggle) => {
+    const sidebar = toggle.closest(".sidebar");
+    if (!sidebar) {
+      return;
+    }
+    toggle.addEventListener("click", () => {
+      const isOpen = sidebar.classList.toggle("nav-open");
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  });
+
   document.querySelectorAll("pre").forEach((pre) => {
     if (pre.querySelector(".copy-button")) {
       return;
