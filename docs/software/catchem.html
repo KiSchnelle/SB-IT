@@ -78,7 +78,7 @@
 
         <section class="section reveal" style="--delay: 0.3s;">
           <h2>Common commands</h2>
-          <p>Replace the placeholders with your paths and resource counts (match <code>--number-of-cpus</code> to what you reserved with Slurm):</p>
+          <p>Replace the placeholders with your values: <code>$motioncorrected_folder</code> is your input data path, and <code>$cpus_reserved</code> should match what you requested (in an interactive Slurm shell you can use <code>$SLURM_CPUS_PER_TASK</code> if set).</p>
             <h3>Single particles</h3>
             <pre class="code-wrap"><code>catchEM inference detection-to-particles $motioncorrected_folder --number-of-cpus $cpus_reserved --output-folder results_single --confidence 0.3</code></pre>
           <p><code>--confidence</code> defaults to 0.5; 0.3 often yields better single-particle results.</p>
@@ -90,6 +90,34 @@
           <div class="callout">
             Use <code>-h</code> with any level for built-in help, for example <code>catchEM -h</code>, <code>catchEM inference -h</code>, or <code>catchEM inference detection-to-particles -h</code>.
           </div>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.4s;">
+          <h2>Batch submission (sbatch) example</h2>
+          <p>Submit an unattended job when you do not need to stay attached. Adjust partition, time, CPUs, GPUs, and memory to match your dataset. Ensure the logs folder exists or change the log paths.</p>
+          <pre class="code-wrap"><code>#!/bin/bash
+#SBATCH --job-name=catchem_detect
+#SBATCH --partition=p.cryo
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=300G
+#SBATCH --gres=gpu:4
+#SBATCH --output=logs/%x_%j.out
+#SBATCH --error=logs/%x_%j.err
+
+spack load miniforge3
+source $(spack location -i miniforge3)/bin/activate
+conda activate catchem
+
+motioncorrected_folder=/path/to/motioncorrected
+output_folder=/path/to/results
+
+catchEM inference detection-to-particles $motioncorrected_folder \
+  --number-of-cpus $SLURM_CPUS_PER_TASK \
+  --output-folder $output_folder \
+  --confidence 0.3
+</code></pre>
+          <p>Remove <code>--gres=gpu:4</code> if you do not need GPUs. Tune <code>--confidence</code>, CPUs, and memory to your model and data size.</p>
         </section>
       </main>
     </div>
