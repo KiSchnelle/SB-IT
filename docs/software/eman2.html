@@ -39,9 +39,11 @@
           <div class="nav-group">
             <div class="nav-label">Software</div>
             <a href="slurm_usage.html">Slurm usage</a>
+            <a href="screen_usage.html">Using screen</a>
             <a href="phenix.html">Using Phenix</a>
             <a href="topaz.html">Using Topaz</a>
             <a href="eman2.html">Using Eman2</a>
+            <a href="catchem.html">Using CatchEM</a>
             <a href="cryolo.html">Using cryolo</a>
           </div>
         </nav>
@@ -54,15 +56,11 @@
 
         <section class="section reveal" style="--delay: 0.1s;">
           <h2>Load the eman2 environment</h2>
-          <p>To use Eman2 on the SB-HPC cluster, you need to first load the miniforge3 module. You can do this by running the following command in your terminal:</p>
-          <pre><code>spack load miniforge3</code></pre>
-          <p>After loading the miniforge3 module, you have to source the conda activation script. To find the path to the conda activation script, you can use the following command:</p>
-          <pre><code>which conda</code></pre>
-          <p>This will give you the path to the conda executable. You now have to remove the condabin/conda part from the path and add instead bin/activate to the end of the path. For example, if the output of the <code>which conda</code> command is <code>/path/to/miniforge3/condabin/conda</code>, you can source the activation script like this:</p>
-          <pre><code>source /path/to/miniforge3/bin/activate</code></pre>
-          <p>After sourcing the activation script, you can activate the Eman2 environment by running:</p>
-          <pre><code>conda activate eman2</code></pre>
-          <p>Now you can run Eman2 commands directly in your terminal.</p>
+          <p>To use Eman2 on the SB-HPC cluster, load the Spack-provided miniforge3 and activate its conda environment directly:</p>
+          <pre class="code-wrap"><code>spack load miniforge3</code></pre>
+          <pre class="code-wrap"><code>source $(spack location -i miniforge3)/bin/activate</code></pre>
+          <pre class="code-wrap"><code>conda activate eman2</code></pre>
+          <p>If <code>$MINIFORGE3_ROOT</code> is set after loading, you can equivalently run <code>source $MINIFORGE3_ROOT/bin/activate</code> before <code>conda activate eman2</code>. Now you can run Eman2 commands directly in your terminal.</p>
         </section>
       </main>
     </div>

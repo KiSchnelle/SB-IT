@@ -39,9 +39,11 @@
           <div class="nav-group">
             <div class="nav-label">Software</div>
             <a href="slurm_usage.html">Slurm usage</a>
+            <a href="screen_usage.html">Using screen</a>
             <a href="phenix.html">Using Phenix</a>
             <a href="topaz.html">Using Topaz</a>
             <a href="eman2.html">Using Eman2</a>
+            <a href="catchem.html">Using CatchEM</a>
             <a href="cryolo.html">Using cryolo</a>
           </div>
         </nav>
@@ -136,8 +138,8 @@ relion --some-option
         </section>
 
         <section class="section reveal" style="--delay: 0.6s;">
-          <h2>Interactive sessions</h2>
-          <p>Interactive jobs are ideal for testing, GUI tools, and short runs. Always do heavy work on a compute node, not the headnode:</p>
+          <h2 id="interactive-sessions">Interactive sessions</h2>
+          <p>Interactive jobs are ideal for testing, GUI tools, and short runs. Always do heavy work on a compute node, not the headnode. Pair long sessions with <a href="screen_usage.html">screen</a> so you can reconnect if your network drops:</p>
           <pre><code>srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --time=02:00:00 --pty bash</code></pre>
         </section>
 

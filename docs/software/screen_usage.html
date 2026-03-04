@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Using cryolo</title>
+  <title>Using screen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -51,19 +51,50 @@
 
       <main class="content">
         <header class="page-header reveal" style="--delay: 0.05s;">
-          <h1>Using cryolo</h1>
+          <h1>Using screen for long-running shells</h1>
+          <p class="lead">Keep interactive Slurm sessions alive if you disconnect.</p>
         </header>
 
         <section class="section reveal" style="--delay: 0.1s;">
-          <h2>Load the cryolo environment</h2>
-          <p>To use cryolo on the SB-HPC cluster, load the Spack-provided miniforge3 and activate its conda environment directly:</p>
-          <pre class="code-wrap"><code>spack load miniforge3</code></pre>
-          <pre class="code-wrap"><code>source $(spack location -i miniforge3)/bin/activate</code></pre>
-          <pre class="code-wrap"><code>conda activate cryolo</code></pre>
-          <p>If <code>$MINIFORGE3_ROOT</code> is set after loading, you can equivalently run <code>source $MINIFORGE3_ROOT/bin/activate</code> before <code>conda activate cryolo</code>. Now you can run cryolo commands directly in your terminal.</p>
-          <div class="callout">
-            Napari boxmanager does not support X11 forwarding and has to be installed locally on your PC for more information look at <a href="https://cryolo.readthedocs.io/en/stable/installation.html">https://cryolo.readthedocs.io/en/stable/installation.html</a>
-          </div>
+          <h2>Why use screen?</h2>
+          <p><code>screen</code> lets you detach from a shell and reconnect later, which is ideal for long interactive Slurm jobs or unstable network connections. Start it on a compute node, not the headnode.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.2s;">
+          <h2>Quick start</h2>
+          <p>Run these after you have an interactive job (see <a href="slurm_usage.html#interactive-sessions">Slurm interactive sessions</a>):</p>
+          <pre><code># Start a named session
+screen -S myrun
+
+# Do your work here
+python script.py
+
+# Detach (keep it running)
+Ctrl+A then D
+
+# List sessions
+screen -ls
+
+# Reattach
+screen -r myrun
+
+# If attached elsewhere
+screen -d -r myrun
+
+# End the session when done
+exit</code></pre>
+          <p><strong>Shortcut:</strong> memorize <code>Ctrl+A</code> then <code>D</code> to detach and <code>screen -r name</code> to return.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.3s;">
+          <h2>Tips for interactive jobs</h2>
+          <ul>
+            <li>Name sessions meaningfully: <code>screen -S catchem-run</code>, <code>screen -S preprocessing</code>.</li>
+            <li>Keep logs inside the session: <code>python script.py &gt; logs/run.out 2&gt;&1</code>.</li>
+            <li>To scroll output, use copy mode: <code>Ctrl+A</code> then <code>[</code>, navigate with arrows, exit with <code>Esc</code>.</li>
+            <li>If a session looks frozen, detach with <code>Ctrl+A</code> then <code>D</code> and reattach.</li>
+            <li>Close unused sessions with <code>exit</code> inside them so they stop using resources.</li>
+          </ul>
         </section>
       </main>
     </div>

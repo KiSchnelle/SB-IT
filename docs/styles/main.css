@@ -319,7 +319,7 @@ input:focus-visible {
 pre {
   position: relative;
   margin: 16px 0;
-  padding: 16px 18px;
+  padding: 16px 64px 16px 18px;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(148, 163, 184, 0.3);
   background: #0b1120;
@@ -329,6 +329,11 @@ pre {
   line-height: 1.5;
   overflow: auto;
   max-width: 100%;
+}
+
+.code-wrap {
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 pre code {

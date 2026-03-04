@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Using CatchEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Spline+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="eyebrow">StrubiOS - EM Data Processing</div>
+          <div class="brand-title">Guidelines</div>
+        </div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+        <nav class="nav" id="primary-nav">
+          <a href="../index.html">Overview</a>
+          <div class="nav-group">
+            <div class="nav-label">Cluster</div>
+            <a href="../cluster_usage.html">Using the SB-HPC cluster</a>
+            <a href="../cluster_resources.html">Cluster resources</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Sessions</div>
+            <a href="../session_guidelines.html">Session and project guidelines</a>
+            <a href="../particle_extraction.html">Extracting Particles</a>
+            <a href="../data_cleanup.html">Data Cleanup</a>
+            <a href="../data_transfer.html">Data Transfer</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Support</div>
+            <a href="../troubleshooting.html">Troubleshooting</a>
+          </div>
+          <div class="nav-group">
+            <div class="nav-label">Software</div>
+            <a href="slurm_usage.html">Slurm usage</a>
+            <a href="screen_usage.html">Using screen</a>
+            <a href="phenix.html">Using Phenix</a>
+            <a href="topaz.html">Using Topaz</a>
+            <a href="eman2.html">Using Eman2</a>
+            <a href="catchem.html">Using CatchEM</a>
+            <a href="cryolo.html">Using cryolo</a>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="page-header reveal" style="--delay: 0.05s;">
+          <h1>Using CatchEM</h1>
+        </header>
+
+        <section class="section reveal" style="--delay: 0.1s;">
+          <h2>Load the CatchEM environment</h2>
+          <p>CatchEM is provided in a dedicated conda environment. Start from a compute node (e.g., an interactive Slurm session) and activate it with the Spack-installed miniforge3:</p>
+          <pre class="code-wrap"><code>spack load miniforge3</code></pre>
+          <pre class="code-wrap"><code>source $(spack location -i miniforge3)/bin/activate</code></pre>
+          <pre class="code-wrap"><code>conda activate catchem</code></pre>
+          <p>If your shell sets <code>$MINIFORGE3_ROOT</code> after loading, you can also run <code>source $MINIFORGE3_ROOT/bin/activate</code> before <code>conda activate catchem</code>. Keep long-running shells safe from disconnects with <a href="screen_usage.html">screen</a>, and start your work inside an interactive job as shown in the <a href="slurm_usage.html#interactive-sessions">Slurm interactive session notes</a>.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.2s;">
+          <h2>Example interactive session</h2>
+          <p>Launch an interactive job, load CatchEM, and keep it attached to a screen session so you can reconnect later if needed:</p>
+          <pre class="code-wrap"><code>srun --partition=p.cryo --ntasks=1 --cpus-per-task=30 --mem=300G --gres=gpu:4 --pty bash</code></pre>
+          <p>Once on the node:</p>
+          <pre class="code-wrap"><code>spack load miniforge3</code></pre>
+          <pre class="code-wrap"><code>source $(spack location -i miniforge3)/bin/activate</code></pre>
+          <pre class="code-wrap"><code>conda activate catchem</code></pre>
+          <p>Optional but recommended (keeps the session alive if disconnected):</p>
+          <pre class="code-wrap"><code>screen -S catchem-run</code></pre>
+          <p>Run your CatchEM commands inside that shell. Detach with <code>Ctrl+A</code> then <code>D</code>, and reattach with <code>screen -r catchem-run</code>. See the <a href="screen_usage.html">screen guide</a> for more tips.</p>
+        </section>
+
+        <section class="section reveal" style="--delay: 0.3s;">
+          <h2>Common commands</h2>
+          <p>Replace the placeholders with your paths and resource counts (match <code>--number-of-cpus</code> to what you reserved with Slurm):</p>
+            <h3>Single particles</h3>
+            <pre class="code-wrap"><code>catchEM inference detection-to-particles $motioncorrected_folder --number-of-cpus $cpus_reserved --output-folder results_single --confidence 0.3</code></pre>
+          <p><code>--confidence</code> defaults to 0.5; 0.3 often yields better single-particle results.</p>
+
+            <h3>Liposomes</h3>
+            <pre class="code-wrap"><code>catchEM inference detection-to-particles $motioncorrected_folder --number-of-cpus $cpus_reserved --image-operations-pipeline R --resize-image-size 1280 --inference-target liposomes</code></pre>
+          <p>Add <code>--output-folder</code> if you want a custom destination for liposome outputs.</p>
+
+          <div class="callout">
+            Use <code>-h</code> with any level for built-in help, for example <code>catchEM -h</code>, <code>catchEM inference -h</code>, or <code>catchEM inference detection-to-particles -h</code>.
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="../scripts/site.js"></script>
+</body>
+</html>
