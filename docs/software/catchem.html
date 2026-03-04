@@ -66,13 +66,14 @@
         <section class="section reveal" style="--delay: 0.2s;">
           <h2>Example interactive session</h2>
           <p>Launch an interactive job, load CatchEM, and keep it attached to a screen session so you can reconnect later if needed:</p>
+          <p>Optional but recommended (keeps the session alive if disconnected):</p>
+          <pre class="code-wrap"><code>screen -S catchem-run</code></pre>
+          <p>Then request an interactive Slurm session with appropriate resources for your dataset and model. Adjust the partition, CPUs, memory, and GPUs as needed:</p>
           <pre class="code-wrap"><code>srun --partition=p.cryo --ntasks=1 --cpus-per-task=30 --mem=300G --gres=gpu:4 --pty bash</code></pre>
           <p>Once on the node:</p>
           <pre class="code-wrap"><code>spack load miniforge3</code></pre>
           <pre class="code-wrap"><code>source $(spack location -i miniforge3)/bin/activate</code></pre>
           <pre class="code-wrap"><code>conda activate catchem</code></pre>
-          <p>Optional but recommended (keeps the session alive if disconnected):</p>
-          <pre class="code-wrap"><code>screen -S catchem-run</code></pre>
           <p>Run your CatchEM commands inside that shell. Detach with <code>Ctrl+A</code> then <code>D</code>, and reattach with <code>screen -r catchem-run</code>. See the <a href="screen_usage.html">screen guide</a> for more tips.</p>
         </section>
 
