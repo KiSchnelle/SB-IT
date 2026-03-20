@@ -84,10 +84,12 @@
           <pre><code>spack load $software</code></pre>
           <p>For example, to load the <code>relion</code> package, you would use:</p>
           <pre><code>spack load relion</code></pre>
+          <p>To load a specific version of a package you just add the version number:</p>
+          <pre><code>spack load relion@5.1.0</code></pre>
           <p>To see which software packages are available, you can use:</p>
           <pre><code>spack find</code></pre>
-          <p>To see only relevant cryo-EM software, you can use:</p>
-          <pre><code>spack list -r cryo_em</code></pre>
+          <p>To look for a specific package that you dont know the exact name of, you can use for example:</p>
+          <pre><code>spack find | grep aretomo </code></pre>
           <p>To use GUI applications like <code>relion</code>, you need to set up an X11 forwarding(Xquartz on Mac). This can be done by using the <code>-X</code> option when connecting via SSH:</p>
           <pre><code>ssh -X username@cluster-address</code></pre>
           <p>After loading the software, you can run the application directly in your terminal. For example, to start <code>relion</code>, you would simply type:</p>
