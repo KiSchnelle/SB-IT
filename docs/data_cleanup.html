@@ -74,6 +74,20 @@
           <p>By clearing these jobs, you free up storage space without losing the ability to rerun the extraction if needed. This is quite important to keep storage usage as low as possible.</p>
         </section>
 
+        <section class="section reveal" style="--delay: 0.35s;">
+          <h2>Rawdata on Live Storage</h2>
+          <p>Rawdata sessions are archived automatically when they are collected. That means the data exists on both the tape archive storage and the live BeeGFS storage, so deleting a session from live storage does not remove the archived copy.</p>
+          <p>This is especially important during the periodic rawdata cleanup: people only need to decide which sessions can be removed from live storage. There is no manual archive check required.</p>
+          <div class="callout"><strong>Keep rawdata on live storage only if it is still needed for motion-correction related jobs.</strong></div>
+          <ul>
+            <li>motion correction itself</li>
+            <li>local motion correction</li>
+            <li>reference-based motion correction in CryoSPARC</li>
+            <li>Bayesian polishing in RELION</li>
+          </ul>
+          <p>For all other processing steps, the rawdata is usually no longer needed on live storage and can be deleted there. If it is needed again later, recovery from tape typically takes 1-2 days. The project only contains links to the rawdata, so users do not need to do anything after recovery and can continue with the jobs above as soon as the files are back.</p>
+        </section>
+
         <section class="section reveal" style="--delay: 0.4s;">
           <h2>Deleting imported volumens</h2>
           <p>If you have imported volumes that are no longer needed, it is a good practice to delete them. This helps in managing storage effectively and ensures that only relevant data is retained in your project. If you imported volumes in cryosparc via drag &amp; drop, you will find them in the imports folder of your project. Please clean this folder regularly to avoid unnecessary storage usage.</p>
