@@ -79,7 +79,7 @@
 
         <section class="section reveal" style="--delay: 0.3s;">
           <h2>Common commands</h2>
-          <p>Replace the placeholders with your values: <code>$motioncorrected_folder</code> is your input data path, and <code>$cpus_reserved</code> should match what you requested (in an interactive Slurm shell you can use <code>$SLURM_CPUS_PER_TASK</code> if set).</p>
+          <p>Replace the placeholders with your values: <code>$motioncorrected_folder</code> is your input data path (for cryosparc also the job folder of curate or export exposure jobs work), and <code>$cpus_reserved</code> should match what you requested (in an interactive Slurm shell you can use <code>$SLURM_CPUS_PER_TASK</code> if set).</p>
             <h3>Single particles</h3>
             <pre class="code-wrap"><code>catchEM inference detection-to-particles $motioncorrected_folder --number-of-cpus $cpus_reserved --output-folder results_single --confidence 0.3</code></pre>
           <p><code>--confidence</code> defaults to 0.5; 0.3 often yields better single-particle results.</p>
