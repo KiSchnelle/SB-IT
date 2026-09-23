@@ -1,6 +1,6 @@
 ---
 hide:
-  - navigation
+  - toc
 ---
 
 # Guidelines for EM data processing

@@ -60,63 +60,288 @@
   font-weight: 600;
 }
 
-/* Hardware overview figures (cluster resources) */
-.md-typeset .stat-grid {
+/* ------------------------------------------------------------------ */
+/* Cluster resources page (hw-*)                                       */
+/* ------------------------------------------------------------------ */
+
+[data-md-color-scheme="default"] {
+  --hw-surface: #f8fafc;
+  --hw-surface-2: #eef2f7;
+  --hw-border: rgba(15, 23, 42, 0.1);
+  --hw-teal: #0f766e;
+  --hw-teal-tint: rgba(15, 118, 110, 0.08);
+  --hw-orange: #c2410c;
+  --hw-orange-tint: rgba(194, 65, 12, 0.08);
+}
+
+[data-md-color-scheme="slate"] {
+  --hw-surface: #121a2c;
+  --hw-surface-2: #182137;
+  --hw-border: rgba(148, 163, 184, 0.16);
+  --hw-teal: #2dd4bf;
+  --hw-teal-tint: rgba(45, 212, 191, 0.08);
+  --hw-orange: #fb923c;
+  --hw-orange-tint: rgba(251, 146, 60, 0.1);
+}
+
+/* Key figures */
+.md-typeset .hw-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
-  gap: 0.8rem;
-  margin: 1em 0 1.5em;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  gap: 0.6rem;
+  margin: 1.2rem 0 1rem;
 }
 
-.md-typeset .stat-grid > div {
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 0.4rem;
-  padding: 0.8rem 1rem;
+@media screen and (min-width: 45em) {
+  .md-typeset .hw-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-.md-typeset .stat-grid .stat-label {
-  display: block;
-  font-size: 0.7rem;
+.md-typeset .hw-stat {
+  position: relative;
+  padding: 0.8rem 0.9rem 0.85rem;
+  border: 1px solid var(--hw-border);
+  border-radius: 0.6rem;
+  background:
+    linear-gradient(155deg, var(--hw-orange-tint), transparent 60%),
+    var(--hw-surface);
+}
+
+.md-typeset .hw-stat:nth-child(even) {
+  background:
+    linear-gradient(155deg, var(--hw-teal-tint), transparent 60%),
+    var(--hw-surface);
+}
+
+.md-typeset .hw-stat--gpu {
+  grid-column: span 2;
+}
+
+.md-typeset .hw-stat > p {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.md-typeset .hw-stat__icon {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.8rem;
+  color: var(--hw-orange);
+}
+
+.md-typeset .hw-stat:nth-child(even) .hw-stat__icon {
+  color: var(--hw-teal);
+}
+
+.md-typeset .hw-stat__icon svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.md-typeset .hw-stat__label {
+  order: 1;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
   color: var(--md-default-fg-color--light);
 }
 
-.md-typeset .stat-grid .stat-value {
-  display: block;
+.md-typeset .hw-stat__value {
+  order: 2;
+  margin-top: 0.15rem;
   font-family: var(--sb-heading-font);
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  line-height: 1.3;
-  margin: 0.2rem 0;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
 }
 
-.md-typeset .stat-grid .stat-note {
-  display: block;
-  font-size: 0.7rem;
+.md-typeset .hw-stat__note {
+  order: 3;
+  margin-top: 0.35rem;
+  font-size: 0.62rem;
+  line-height: 1.45;
   color: var(--md-default-fg-color--light);
 }
 
-/* Node filter on the cluster resources page */
-.md-typeset .table-filter {
+.md-typeset .hw-stat--gpu .hw-stat__note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+/* GPU badges (stats and tables) */
+.md-typeset .hw-gpu {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--hw-border);
+  border-radius: 999px;
+  background: var(--hw-surface-2);
+  color: var(--md-default-fg-color);
+  font-size: 0.6rem;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.md-typeset .hw-gpu--a40 {
+  border-color: transparent;
+  background: var(--hw-teal-tint);
+  color: var(--hw-teal);
+}
+
+.md-typeset .hw-gpu--l40 {
+  border-color: transparent;
+  background: var(--hw-orange-tint);
+  color: var(--hw-orange);
+}
+
+/* Node filter */
+.md-typeset .hw-filter {
+  margin: 1rem 0 0.4rem;
+  padding: 0.35rem 1rem;
+  border: 1px solid var(--hw-border);
+  border-radius: 999px;
+  background: var(--hw-surface);
+  transition: border-color 125ms, box-shadow 125ms;
+}
+
+.md-typeset .hw-filter:focus-within {
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 0 0 0.15rem var(--hw-teal-tint);
+}
+
+.md-typeset .hw-filter > p {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin: 0.5em 0 1em;
+  margin: 0;
 }
 
-.md-typeset .table-filter input {
+.md-typeset .hw-filter__icon {
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .hw-filter input {
   flex: 1;
-  max-width: 28rem;
-  padding: 0.45rem 0.7rem;
-  border: 1px solid var(--md-default-fg-color--lighter);
-  border-radius: 0.3rem;
-  background: var(--md-default-bg-color);
+  min-width: 0;
+  padding: 0.35rem 0;
+  border: none;
+  outline: none;
+  background: transparent;
   color: var(--md-default-fg-color);
   font: inherit;
+  font-size: 0.75rem;
 }
 
-.md-typeset .table-filter input:focus {
-  outline: 2px solid var(--md-accent-fg-color);
-  outline-offset: 1px;
+.md-typeset .hw-filter__count {
+  font-size: 0.62rem;
+  color: var(--md-default-fg-color--light);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.md-typeset .hw-empty {
+  margin: 1rem 0;
+  padding: 1.2rem;
+  border: 1px dashed var(--hw-border);
+  border-radius: 0.6rem;
+  text-align: center;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Node groups */
+.md-typeset .hw-section h2 {
+  margin: 1.6rem 0 0.35rem;
+}
+
+.md-typeset .hw-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0 0 0.6rem;
+}
+
+.md-typeset .hw-chips span {
+  padding: 0.05rem 0.55rem;
+  border: 1px solid var(--hw-border);
+  border-radius: 999px;
+  background: var(--hw-surface-2);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.6rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.md-typeset .hw-section .md-typeset__scrollwrap {
+  margin: 0.4rem 0 1rem;
+}
+
+.md-typeset .hw-section .md-typeset__table {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.md-typeset .hw-section table:not([class]) {
+  display: table;
+  width: 100%;
+  border: 1px solid var(--hw-border);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background: var(--hw-surface);
+  font-size: 0.68rem;
+}
+
+.md-typeset .hw-section table:not([class]) th {
+  min-width: 0;
+  padding: 0.75em 1.1em;
+  border-bottom: 1px solid var(--hw-border);
+  background: var(--hw-teal-tint);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.md-typeset .hw-section table:not([class]) td {
+  padding: 0.6em 1.1em;
+  border-top: 1px solid var(--hw-border);
+  vertical-align: middle;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.md-typeset .hw-section table:not([class]) tbody tr:first-child td {
+  border-top: none;
+}
+
+.md-typeset .hw-section table:not([class]) tbody tr:hover {
+  background-color: var(--hw-teal-tint);
+  box-shadow: none;
+}
+
+.md-typeset .hw-section td:first-child code {
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .hw-muted {
+  margin-left: 0.2em;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.92em;
+}
+
+/* Abbreviation hints stay available on hover, without underlines in table headers */
+.md-typeset .hw-section th abbr {
+  text-decoration: none;
+  border-bottom: none;
 }
