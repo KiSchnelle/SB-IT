@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # MkDocs and its extensions (requirements.txt)
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      docs-tooling:
+        patterns: ["*"]
+
+  # Workflow actions — keeps the SHA pins and their version comments current
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]

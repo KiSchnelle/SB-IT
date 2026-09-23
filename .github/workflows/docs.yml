@@ -1,0 +1,95 @@
+name: docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1" # Mondays: catch links that broke outside this repo
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  # Replace superseded PR runs; never cancel a run on main mid-deploy.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # full history for the "Last updated" dates
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install MkDocs
+        run: pip install -r requirements.txt
+
+      - name: Build (strict)
+        run: mkdocs build --strict
+
+      - name: Spell check
+        uses: codespell-project/actions-codespell@e3258cca84ce02b0bb36a3d41f2c18f719a0cc1a # v2.4.3
+
+      - name: Link check
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          fail: true
+          args: >-
+            --no-progress
+            --exclude-path site/404.html
+            --exclude '^https?://(localhost|127\.0\.0\.1)'
+            --exclude '^https://kischnelle\.github\.io/SB-IT/'
+            'site/**/*.html'
+
+      - name: Configure Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'schedule' && github.event_name != 'pull_request'
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: Upload site
+        if: github.ref == 'refs/heads/main' && github.event_name != 'schedule' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'schedule' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+      - name: Check that the old page addresses still work
+        env:
+          BASE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          for page in index.html cluster_usage.html cluster_resources.html session_guidelines.html \
+                      particle_extraction.html data_cleanup.html data_transfer.html troubleshooting.html \
+                      software/slurm_usage.html software/screen_usage.html software/phenix.html \
+                      software/topaz.html software/eman2.html software/catchem.html software/cryolo.html; do
+            curl --fail --silent --show-error --retry 5 --retry-delay 10 --retry-all-errors \
+              --output /dev/null "${BASE_URL}${page}"
+            echo "ok  ${page}"
+          done
