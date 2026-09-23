@@ -76,8 +76,14 @@ positives, higher values keep only the most certain picks.
 ```bash
 catchem-ml segment $motioncorrected_folder \
   --number-of-cpus $SLURM_CPUS_PER_TASK \
-  --output-folder results_liposomes
+  --output-folder results_liposomes \
+  --image-operations-pipeline R \
+  --resize-image-size 1280
 ```
+
+For liposomes, always add the two image options: `--image-operations-pipeline R` resizes each whole
+micrograph (instead of the default `TR`, which tiles it first) and `--resize-image-size 1280` sets the
+size it is resized to (default 640).
 
 `segment` uses the liposome model by default. It outlines each liposome and places particle coordinates
 along its membrane — inside and outside (`--sampling-mode`), `--boundary-offset-px` away from the outline
@@ -129,7 +135,8 @@ catchem-ml detect "$motioncorrected_folder" \
   --output-folder "$output_folder"
 ```
 
-Use `catchem-ml segment` instead of `detect` for liposomes. Tune CPUs and memory to your data size.
+For liposomes, use `catchem-ml segment` with the two image options from [above](#liposomes) instead of
+`detect`. Tune CPUs and memory to your data size.
 
 ## Web dashboard (catchem-web)
 
@@ -192,6 +199,8 @@ already in use, another user has that port — pick a different number.
 - **Slurm options** — set **Partition** (e.g. `p.cryo`), **Cpus**, **Mem** (e.g. `300G`), **Time Minutes**
   and **Gpus**. If **Gpus** is left empty, no GPU is requested and the job runs on CPU only — very slowly.
   Leave the command's own **Gpu Ids** field empty; it then uses all GPUs of the job.
+- **Liposomes (Segment)** — set **Image Operations Pipeline** to `R` and **Resize Image Size** to `1280`,
+  as on the [command line](#liposomes).
 - **Number Of Cpus** — set it to the same number as the Slurm **Cpus**. If left empty it uses up to 10
   processes, regardless of what you requested.
 
