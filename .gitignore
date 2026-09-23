@@ -1,0 +1,9 @@
+# MkDocs build output and plugin caches (privacy plugin downloads)
+site/
+.cache/
+
+# Local virtual environments
+.venv/
+venv/
+
+.DS_Store

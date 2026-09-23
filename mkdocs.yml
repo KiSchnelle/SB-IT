@@ -1,0 +1,127 @@
+site_name: SB-HPC Guidelines
+site_description: Guidelines for EM data processing on the SB-HPC cluster (StrubiOS)
+site_url: https://kischnelle.github.io/SB-IT/
+repo_url: https://github.com/KiSchnelle/SB-IT
+repo_name: KiSchnelle/SB-IT
+edit_uri: edit/main/docs/
+copyright: StrubiOS · EM data processing guidelines
+
+docs_dir: docs
+# Keep the old page addresses (e.g. /software/catchem.html) working.
+use_directory_urls: false
+
+validation:
+  omitted_files: warn
+  absolute_links: relative_to_docs
+  unrecognized_links: warn
+  anchors: warn
+
+theme:
+  name: material
+  language: en
+  favicon: assets/favicon.svg
+  icon:
+    logo: material/microscope
+    repo: fontawesome/brands/github
+  font:
+    text: Spline Sans
+    code: JetBrains Mono
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.footer
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+
+plugins:
+  - search:
+      # Split on "=", ":" and "/" too, so "--gres=gpu:4" is findable by "gpu", but keep
+      # dots inside words so "p.cryo" stays one searchable term.
+      separator: '[\s​\-_,:!=\[\]()"`/]+|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  # Downloads Google Fonts and other external assets at build time and serves
+  # them from this site, so visitors' browsers never contact third parties (GDPR).
+  - privacy
+  - git-revision-date-localized:
+      type: date
+      fallback_to_build_date: true
+      strict: false
+
+extra_css:
+  # Heading font; the privacy plugin self-hosts it at build time.
+  - https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&display=swap
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/table-filter.js
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.snippets:
+      base_path: [includes]
+      check_paths: true
+      auto_append:
+        - abbreviations.md
+
+nav:
+  - Overview: index.md
+  - Cluster:
+      - Using the SB-HPC cluster: cluster_usage.md
+      - SSH tunnels: ssh_tunnels.md
+      - Cluster resources: cluster_resources.md
+  - Sessions:
+      - Session and project guidelines: session_guidelines.md
+      - Extracting particles: particle_extraction.md
+      - Data cleanup: data_cleanup.md
+      - Data transfer: data_transfer.md
+  - Software:
+      - Slurm usage: software/slurm_usage.md
+      - Using screen: software/screen_usage.md
+      - Using Phenix: software/phenix.md
+      - Using Topaz: software/topaz.md
+      - Using EMAN2: software/eman2.md
+      - Using catchEM: software/catchem.md
+      - Using catchem_mount: software/catchem_mount.md
+      - Using crYOLO: software/cryolo.md
+  - Support:
+      - Troubleshooting: troubleshooting.md

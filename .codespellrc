@@ -1,0 +1,5 @@
+[codespell]
+# Documentation sources and repo files; built output and binary assets are skipped.
+skip = ./site,./.cache,./.git,*.svg,*.png,*.woff2,./LICENSE
+# Add false positives (names, domain terms) here, comma-separated:
+# ignore-words-list = word1,word2
