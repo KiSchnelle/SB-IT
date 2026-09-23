@@ -38,7 +38,8 @@ Every push and pull request runs [`.github/workflows/docs.yml`](.github/workflow
 - `mkdocs build --strict` — fails on broken internal links, anchors and nav entries
 - [codespell](https://github.com/codespell-project/codespell) — spelling; add false positives to
   `ignore-words-list` in [`.codespellrc`](.codespellrc)
-- [lychee](https://github.com/lycheeverse/lychee) — external links (also weekly)
+- [lychee](https://github.com/lycheeverse/lychee) — external links, also weekly; a broken external
+  link marks the run red but does not block the deploy
 
 Run the first two locally with:
 

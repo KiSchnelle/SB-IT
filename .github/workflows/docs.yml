@@ -41,17 +41,6 @@ jobs:
       - name: Spell check
         uses: codespell-project/actions-codespell@e3258cca84ce02b0bb36a3d41f2c18f719a0cc1a # v2.4.3
 
-      - name: Link check
-        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
-        with:
-          fail: true
-          args: >-
-            --no-progress
-            --exclude-path site/404.html
-            --exclude '^https?://(localhost|127\.0\.0\.1)'
-            --exclude '^https://kischnelle\.github\.io/SB-IT/'
-            'site/**/*.html'
-
       - name: Configure Pages
         if: github.ref == 'refs/heads/main' && github.event_name != 'schedule' && github.event_name != 'pull_request'
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
@@ -61,6 +50,26 @@ jobs:
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: site
+
+  # Its own job so that an external site being down marks the run red without
+  # blocking a deploy. Internal links are already checked by the strict build.
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Link check
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          fail: true
+          args: >-
+            --no-progress
+            --root-dir "${{ github.workspace }}/docs"
+            --exclude '^https?://(localhost|127\.0\.0\.1)'
+            'docs/**/*.md' 'includes/*.md' README.md
 
   deploy:
     needs: build
