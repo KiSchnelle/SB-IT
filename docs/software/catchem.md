@@ -7,7 +7,7 @@ helpers for projects and cryoSPARC data. It has two command-line tools and a web
 |---|---|
 | `catchem-ml` | Particle detection (`detect`), liposome segmentation (`segment`), training and data import |
 | `catchem-utils` | Project creation, cryoSPARC exposure rejection, particle export to RELION |
-| `catchem-web` | A web dashboard that fills in and submits the commands above for you |
+| catchEM dashboard | A web dashboard that fills in and submits the commands above for you, started with `typantic web serve` (typantic is the toolkit catchEM's commands are built on) |
 
 !!! info "Use the `catchem_dev` environment"
     Everything on this page comes from the **`catchem_dev`** environment. The older `catchem` environment
@@ -138,9 +138,9 @@ catchem-ml detect "$motioncorrected_folder" \
 For liposomes, use `catchem-ml segment` with the two image options from [above](#liposomes) instead of
 `detect`. Tune CPUs and memory to your data size.
 
-## Web dashboard (catchem-web)
+## Web dashboard
 
-`catchem-web` is a dashboard in your browser: pick a command, fill in a form, and it submits the job to
+The catchEM dashboard runs in your browser: pick a command, fill in a form, and it submits the job to
 Slurm for you, shows the live log, and keeps a history of your runs. It runs **as you** on the login node,
 so it sees your files and submits jobs under your account.
 
@@ -149,11 +149,11 @@ so it sees your files and submits jobs under your account.
 On the login node, inside [screen](screen_usage.md) so it keeps running when you disconnect:
 
 ```bash
-screen -S catchem-web
+screen -S catchem-dashboard
 spack load miniforge3
 source $(spack location -i miniforge3)/bin/activate
 conda activate catchem_dev
-catchem-web serve --log-level warning
+typantic web serve --log-level warning
 ```
 
 It prints something like this (with your own port, token, user and host):

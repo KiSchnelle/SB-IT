@@ -1,9 +1,9 @@
 # SSH tunnels
 
 Several tools on the cluster run a **web interface** — cryoSPARC, the
-[catchem_mount](software/catchem_mount.md) dashboard and the [catchem-web](software/catchem.md#web-dashboard-catchem-web)
-dashboard. For security, these listen only *on the cluster itself*, so your browser can't reach them
-directly. An SSH tunnel connects a port on your computer to that port on the cluster:
+[catchem_mount](software/catchem_mount.md) dashboard and the [catchEM dashboard](software/catchem.md#web-dashboard).
+For security, these listen only *on the cluster itself*, so your browser can't reach them directly. An SSH
+tunnel connects a port on your computer to that port on the cluster:
 
 ```text
  your computer
@@ -75,7 +75,7 @@ What the options mean:
 |---|---|---|
 | cryoSPARC | 39000 | `ssh -N -L 39000:localhost:39000 username@cluster-address` |
 | catchem_mount | 8642 | `ssh -N -L 8642:localhost:8642 username@cluster-address` |
-| catchem-web | printed at start | copy the `ssh -N -L …` line the dashboard prints |
+| catchEM dashboard | printed at start | copy the `ssh -N -L …` line the dashboard prints |
 
 You can forward several ports with one connection by repeating `-L`:
 

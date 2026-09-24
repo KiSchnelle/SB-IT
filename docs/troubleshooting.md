@@ -27,12 +27,13 @@ Common issues and fast fixes for the SB-HPC cluster and EM workflows.
 
 ## catchEM web interfaces
 
-- **catchem-web says unauthorized / asks for a token:** open the *full* URL it printed, including
-  `?token=…`. Every restart creates a new token, so old links stop working — use the newest one.
-- **catchem-web GPU job ran on CPU / is very slow:** the **GPUs** field in the Slurm options was left empty,
-  so no GPU was requested. Set it and submit again. See [catchEM form tips](software/catchem.md#form-tips).
-- **Can't find the results of a catchem-web job:** if **Output folder** was left empty, results are written
-  to `~/.typantic/jobs/<job id>/` in your home folder.
+- **The catchEM dashboard says unauthorized / asks for a token:** open the *full* URL it printed,
+  including `?token=…`. Every restart creates a new token, so old links stop working — use the newest one.
+- **A GPU job from the catchEM dashboard ran on CPU / is very slow:** the **GPUs** field in the Slurm
+  options was left empty, so no GPU was requested. Set it and submit again. See
+  [catchEM form tips](software/catchem.md#form-tips).
+- **Can't find the results of a job from the catchEM dashboard:** if **Output folder** was left empty,
+  results are written to `~/.typantic/jobs/<job id>/` in your home folder.
 - **catchem_mount login refused:** use your university username and password (not your SSH key). If it
   still fails, your account may not be enabled for the dashboard — contact IT.
 
