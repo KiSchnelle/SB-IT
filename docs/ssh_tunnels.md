@@ -73,14 +73,14 @@ What the options mean:
 
 | Tool | Port | Tunnel command |
 |---|---|---|
-| cryoSPARC | 39000 | `ssh -N -L 39000:localhost:39000 username@cluster-address` |
+| cryoSPARC | 61000 | `ssh -N -L 61000:localhost:61000 username@cluster-address` |
 | catchem_mount | 8642 | `ssh -N -L 8642:localhost:8642 username@cluster-address` |
 | catchEM dashboard | printed at start | copy the `ssh -N -L …` line the dashboard prints |
 
 You can forward several ports with one connection by repeating `-L`:
 
 ```bash
-ssh -N -L 39000:localhost:39000 -L 8642:localhost:8642 username@cluster-address
+ssh -N -L 61000:localhost:61000 -L 8642:localhost:8642 username@cluster-address
 ```
 
 ## "Address already in use"
@@ -104,7 +104,7 @@ If you use the same tunnels regularly, put them in your SSH config file — `~/.
 Host sb-tunnels
     HostName cluster-address
     User username
-    LocalForward 39000 localhost:39000
+    LocalForward 61000 localhost:61000
     LocalForward 8642 localhost:8642
     ExitOnForwardFailure yes
     ServerAliveInterval 60

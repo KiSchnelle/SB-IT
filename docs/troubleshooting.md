@@ -15,10 +15,10 @@ Common issues and fast fixes for the SB-HPC cluster and EM workflows.
 - **cryoSPARC web interface not loading:** open an [SSH tunnel](ssh_tunnels.md) and use the local URL:
 
     ```bash
-    ssh -N -L 39000:localhost:39000 username@cluster-address
+    ssh -N -L 61000:localhost:61000 username@cluster-address
     ```
 
-    Then open `http://localhost:39000`.
+    Then open `http://localhost:61000`.
 
 - **Page stopped loading after a while:** the tunnel closed — the terminal was closed, the laptop slept or
   the network dropped. Run the tunnel command again.
