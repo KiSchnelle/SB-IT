@@ -90,7 +90,7 @@ $project-$username
 ```
 
 Projects that are no longer actively processed, for example during publication or review, belong on the
-[secondary cryoSPARC instance](software/cryosparc.md).
+[secondary cryoSPARC instance](software/cryosparc.md). Ask IT administration to move them there.
 
 ### cryoSPARC Live sessions
 
