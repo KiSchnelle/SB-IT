@@ -1,9 +1,6 @@
 site_name: SB-HPC Guidelines
 site_description: Guidelines for EM data processing on the SB-HPC cluster (StrubiOS)
 site_url: https://kischnelle.github.io/SB-IT/
-repo_url: https://github.com/KiSchnelle/SB-IT
-repo_name: KiSchnelle/SB-IT
-edit_uri: edit/main/docs/
 copyright: StrubiOS · EM data processing guidelines
 
 docs_dir: docs
@@ -22,7 +19,6 @@ theme:
   favicon: assets/favicon.svg
   icon:
     logo: material/microscope
-    repo: fontawesome/brands/github
   font:
     text: Spline Sans
     code: JetBrains Mono
