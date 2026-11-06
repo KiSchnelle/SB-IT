@@ -18,7 +18,8 @@ Common issues and fast fixes for the SB-HPC cluster and EM workflows.
     ssh -N -L 61000:localhost:61000 username@cluster-address
     ```
 
-    Then open `http://localhost:61000`.
+    Then open `http://localhost:61000`. The secondary instance uses port 62000 — see
+    [Using cryoSPARC](software/cryosparc.md).
 
 - **Page stopped loading after a while:** the tunnel closed — the terminal was closed, the laptop slept or
   the network dropped. Run the tunnel command again.

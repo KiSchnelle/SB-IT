@@ -96,7 +96,8 @@ relion
 ## Web interfaces
 
 Software that runs a web interface on the cluster (cryoSPARC, catchem_mount, the catchEM dashboard) is
-reached through an SSH tunnel. For example, for cryoSPARC on port 61000:
+reached through an SSH tunnel. For example, for the primary [cryoSPARC](software/cryosparc.md) instance on
+port 61000:
 
 ```bash
 ssh -N -L 61000:localhost:61000 username@cluster-address

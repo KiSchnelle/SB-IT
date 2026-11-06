@@ -37,7 +37,7 @@ Welcome to the StrubiOS guidelines for processing EM data on the SB-HPC cluster.
     ---
 
     - [Slurm](software/slurm_usage.md) · [screen](software/screen_usage.md)
-    - [Phenix](software/phenix.md) · [Topaz](software/topaz.md) · [EMAN2](software/eman2.md) · [crYOLO](software/cryolo.md)
+    - [cryoSPARC](software/cryosparc.md) · [Phenix](software/phenix.md) · [Topaz](software/topaz.md) · [EMAN2](software/eman2.md) · [crYOLO](software/cryolo.md)
     - [catchEM](software/catchem.md) · [catchem_mount](software/catchem_mount.md)
 
 -   :material-lifebuoy:{ .lg .middle } **Support**

@@ -89,6 +89,9 @@ properly managed and avoids conflicts when users leave. Name the cryoSPARC proje
 $project-$username
 ```
 
+Projects that are no longer actively processed, for example during publication or review, belong on the
+[secondary cryoSPARC instance](software/cryosparc.md).
+
 ### cryoSPARC Live sessions
 
 cryoSPARC Live sessions are **mandatory** for cryo-EM data collection. The Live session must have the

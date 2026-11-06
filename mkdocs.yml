@@ -117,6 +117,7 @@ nav:
   - Software:
       - Slurm usage: software/slurm_usage.md
       - Using screen: software/screen_usage.md
+      - Using cryoSPARC: software/cryosparc.md
       - Using Phenix: software/phenix.md
       - Using Topaz: software/topaz.md
       - Using EMAN2: software/eman2.md
