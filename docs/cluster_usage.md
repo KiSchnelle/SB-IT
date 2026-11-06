@@ -14,6 +14,9 @@ Then connect with:
 ssh username@cluster-address
 ```
 
+`cluster-address` is a placeholder on all of these pages. Ask your colleagues for the real address and
+whether you need VPN when you are off campus.
+
 ## Create an SSH key (ed25519 only)
 
 If you do not already have an ed25519 key, create one on your own computer. When asked for the file
@@ -92,6 +95,9 @@ After loading the software, start the application from that terminal, for exampl
 ```bash
 relion
 ```
+
+The RELION GUI itself can run on the login node. Jobs you start from it must not run there: submit them
+to Slurm with the *Submit to queue?* option.
 
 ## Web interfaces
 

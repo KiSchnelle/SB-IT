@@ -37,10 +37,10 @@ command for the instance you need, then open its address in your browser:
 ## Move a project to the secondary instance
 
 When you are no longer actively processing a project, for example once it is in publication or review,
-it should move to the secondary instance. Ask IT administration to do this: they detach the project from
+it should move to the secondary instance. Ask the administrators to do this: they detach the project from
 the primary instance and attach it to the secondary one.
 
 ## Processing on the secondary instance
 
 The secondary instance has no lane connected by default, so jobs there can't run right away. If you need
-to process something, for example because a reviewer asks for a change, ask IT administration for a lane.
+to process something, for example because a reviewer asks for a change, ask the administrators for a lane.

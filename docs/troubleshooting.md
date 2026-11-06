@@ -19,7 +19,10 @@ Common issues and fast fixes for the SB-HPC cluster and EM workflows.
     ```
 
     Then open `http://localhost:61000`. The secondary instance uses port 62000 — see
-    [Using cryoSPARC](software/cryosparc.md).
+    [cryoSPARC](software/cryosparc.md).
+- **A job on the secondary cryoSPARC instance doesn't start:** no lane is connected there by default. Ask
+  the administrators for one — see
+  [processing on the secondary instance](software/cryosparc.md#processing-on-the-secondary-instance).
 
 - **Page stopped loading after a while:** the tunnel closed — the terminal was closed, the laptop slept or
   the network dropped. Run the tunnel command again.
@@ -36,7 +39,7 @@ Common issues and fast fixes for the SB-HPC cluster and EM workflows.
 - **Can't find the results of a job from the catchEM dashboard:** if **Output folder** was left empty,
   results are written to `~/.typantic/jobs/<job id>/` in your home folder.
 - **catchem_mount login refused:** use your university username and password (not your SSH key). If it
-  still fails, your account may not be enabled for the dashboard — contact IT.
+  still fails, your account may not be enabled for the dashboard — contact the administrators.
 
 ## Slurm and job issues
 
@@ -68,7 +71,10 @@ See [Data cleanup](data_cleanup.md) for detailed guidance.
 ## Data transfer problems
 
 - **Session not appearing:** check that the session name follows the naming rules and matches your
-  project name exactly (same upper/lower case).
+  project name exactly (same upper/lower case). The [catchem_mount](software/catchem_mount.md) dashboard
+  shows every session and where it is.
+- **Session held back:** sessions dated more than 3 days in the past or more than 1 day in the future wait
+  until the administrators approve them.
 - **Links missing in the project folder:** confirm the project was created with
   `catchem-utils init-project` *before* the session was collected.
 
@@ -77,5 +83,5 @@ details.
 
 ## Need help?
 
-If you are still stuck, note the exact error message and the command you ran. Share that with the team
+If you are still stuck, note the exact error message and the command you ran. Share that with the administrators
 for faster support.

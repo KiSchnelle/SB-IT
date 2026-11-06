@@ -1,5 +1,9 @@
 # How to keep your data clean
 
+!!! warning "Please don't run `du` or big file listings on the storage"
+    Commands like `du -sh`, `ls -R` or `find` walk through huge numbers of files and slow down the shared
+    storage for everyone. If you need to know how much space a project uses, ask the administrators.
+
 ## Clearing intermediate results
 
 Use cryoSPARC's built-in feature to clear intermediate results as often as possible. It clears data on a
@@ -39,7 +43,7 @@ tape archive and on the live BeeGFS storage, so removing a session from live sto
 archived copy.
 
 This matters for the periodic rawdata cleanup: you only need to decide which of your sessions can be
-removed from live storage — the removal itself is done by the staff. No manual archive check is needed.
+removed from live storage — the removal itself is done by the administrators. No manual archive check is needed.
 
 !!! warning "Keep rawdata on live storage only while it is still needed for motion-correction related jobs"
     - motion correction itself
@@ -59,26 +63,27 @@ drag & drop end up in the `imports` folder of your project — please clean this
 
 ## Deleting projects
 
-**cryoSPARC projects** — delete the project with the built-in feature of the cryoSPARC web interface.
-This does not delete the project folder on the filesystem, so you have to delete it manually: go to the
-folder containing the project in the terminal and run
+If the project has a cryoSPARC project, **delete that first** in the web interface of the
+[instance](software/cryosparc.md) it is on, so it is also removed from the cryoSPARC database. This does
+not delete its folder.
+
+Then delete the folder itself:
+
+| To delete | Folder |
+|---|---|
+| A cryoSPARC project | `/sbdata/projects/$username/$project/cryosparc/$cryosparc_project` |
+| A RELION project | `/sbdata/projects/$username/$project/relion/$relion_project` |
+| A whole project | `/sbdata/projects/$username/$project` |
+
+Check that it is the right folder, then delete it, with `<folder>` replaced by the full path:
 
 ```bash
-rm -rf $project
+ls <folder>
+rm -rf <folder>
 ```
 
-where `$project` is the name of the project folder.
-
-**RELION projects** — delete the project folder manually in the same way:
-
-```bash
-rm -rf $project
-```
-
-**Whole project folders** — a project under `/sbdata/projects/$username/$project` is deleted the same
-way. **Delete its cryoSPARC project in the web interface first**, so it is also removed from the
-cryoSPARC database. Deleting a project does not delete the rawdata: the `rawdata` folders inside the
-project only contain links to the original files.
+Deleting a project does not delete the rawdata: the `rawdata` folders inside it only contain links to the
+original files.
 
 !!! danger "`rm -rf` cannot be undone"
-    It deletes immediately and without asking. Double-check the folder name before pressing ++enter++.
+    It deletes immediately and without asking. Double-check the path before pressing ++enter++.

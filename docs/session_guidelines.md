@@ -22,8 +22,7 @@ Inside it, every project has its own folder with this structure:
   |-- misc/        <-- any other data: volumes, maps, notes, ...
 ```
 
-!!! warning "Please don't create any other folders inside"
-    If you need to store custom data, use the `misc` folders.
+Please don't create any other folders inside. If you need to store custom data, use the `misc` folders.
 
 Projects that don't follow this structure are **not** processed by the cluster automation and are
 **not** eligible for automated data transfer. Each project **has to be initialized first** — create it
@@ -36,7 +35,8 @@ catchem-utils init-project my-project
 This creates `/sbdata/projects/$username/my-project` with the structure above. See all options with
 `catchem-utils init-project --help`.
 
-!!! danger "Do this before collecting your first session!"
+!!! warning "Do this before collecting your first session"
+    Data can only be linked into a project that already exists.
 
 Project name rules:
 
@@ -52,6 +52,12 @@ Sessions are named like this — for **cryo and negative-stain** data collection
 YYYY-MM-DD_$username_$project_$comment
 ```
 
+For example:
+
+```text
+2026-11-06_jsmith_my-project_first-grid
+```
+
 Where:
 
 - `YYYY-MM-DD` is the collection date as **year-month-day** (e.g. `2024-12-26`).
@@ -61,14 +67,14 @@ Where:
 - `$comment` is a short descriptive comment. **Mandatory.**
 
 !!! danger "Allowed characters"
-    The username, project and comment parts may contain only letters, digits and `-`, must start with a
-    letter or digit, and can be at most 20 characters long. **No spaces, underscores or other special
-    characters** inside a part — the underscores only separate the four parts.
+    The username, project and comment parts may contain only letters, digits and `-`, and must start with
+    a letter or digit. The project and comment can be at most 15 characters long. **No spaces, underscores
+    or other special characters** inside a part — the underscores only separate the four parts.
 
 Also keep in mind:
 
 - **The date must be current.** Sessions dated more than 3 days in the past or more than 1 day in the
-  future are held until staff approve them — a typo in the date delays your data.
+  future are held until the administrators approve them — a typo in the date delays your data.
 - **Each session name can only be used once**, even after the data has been removed.
 
 Please take your time to double-check the session name before starting the collection. Wrong session
@@ -90,7 +96,7 @@ $project-$username
 ```
 
 Projects that are no longer actively processed, for example during publication or review, belong on the
-[secondary cryoSPARC instance](software/cryosparc.md). Ask IT administration to move them there.
+[secondary cryoSPARC instance](software/cryosparc.md). Ask the administrators to move them there.
 
 ### cryoSPARC Live sessions
 
