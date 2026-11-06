@@ -1,4 +1,4 @@
-# Using EMAN2
+# EMAN2
 
 ## Load the EMAN2 environment
 

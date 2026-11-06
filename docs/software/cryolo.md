@@ -1,4 +1,4 @@
-# Using crYOLO
+# crYOLO
 
 ## Load the crYOLO environment
 

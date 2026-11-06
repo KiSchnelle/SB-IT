@@ -1,4 +1,4 @@
-# How to keep your data clean
+# Data cleanup
 
 !!! warning "Please don't run `du` or big file listings on the storage"
     Commands like `du -sh`, `ls -R` or `find` walk through huge numbers of files and slow down the shared

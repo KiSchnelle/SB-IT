@@ -1,4 +1,4 @@
-# Using cryoSPARC
+# cryoSPARC
 
 The cluster runs two cryoSPARC instances. Use the **primary** instance for your normal processing. The
 **secondary** instance is meant for projects that are no longer actively processed, for example during

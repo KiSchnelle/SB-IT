@@ -1,4 +1,4 @@
-# Using catchem_mount
+# catchem_mount
 
 catchem_mount is the facility's data-management dashboard. It shows every collected session — where its
 rawdata lives, its archive and backup copies, and the jobs that move it — and lets you act on your own

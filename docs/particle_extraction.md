@@ -1,4 +1,4 @@
-# Guidelines on particle extraction
+# Extracting particles
 
 Particles never need to be extracted at full box size at the start. Binning 2–4 times is more than
 enough to sort out bad particles.

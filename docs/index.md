@@ -13,38 +13,39 @@ Welcome to the StrubiOS guidelines for processing EM data on the SB-HPC cluster.
     3. [Session and project guidelines](session_guidelines.md) — create your project *before* your first session
     4. [Data transfer](data_transfer.md) — where your data shows up after collection
 
-<div class="grid cards" markdown>
+<div class="grid cards sb-tasks" markdown>
 
--   :material-server-network:{ .lg .middle } **Cluster**
+-   :material-console:{ .lg .middle } [**Get connected**](cluster_usage.md)
 
-    ---
+    Account, SSH key and loading software
 
-    - [Using the SB-HPC cluster](cluster_usage.md)
-    - [SSH tunnels](ssh_tunnels.md)
-    - [Cluster resources](cluster_resources.md)
+-   :material-folder-plus:{ .lg .middle } [**Create a project**](session_guidelines.md#project-folder-structure-and-project-creation)
 
--   :material-folder-multiple-image:{ .lg .middle } **Sessions & data**
+    Needed before your first session
 
-    ---
+-   :material-form-textbox:{ .lg .middle } [**Name a session**](session_guidelines.md#session-collection)
 
-    - [Session and project guidelines](session_guidelines.md)
-    - [Extracting particles](particle_extraction.md)
-    - [Data cleanup](data_cleanup.md)
-    - [Data transfer](data_transfer.md)
+    The naming rules, with an example
 
--   :material-application-cog:{ .lg .middle } **Software**
+-   :material-folder-search-outline:{ .lg .middle } [**Find my data**](data_transfer.md)
 
-    ---
+    Where your data shows up after collection
 
-    - [Slurm](software/slurm_usage.md) · [screen](software/screen_usage.md)
-    - [cryoSPARC](software/cryosparc.md) · [Phenix](software/phenix.md) · [Topaz](software/topaz.md) · [EMAN2](software/eman2.md) · [crYOLO](software/cryolo.md)
-    - [catchEM](software/catchem.md) · [catchem_mount](software/catchem_mount.md)
+-   :material-cube-outline:{ .lg .middle } [**Open cryoSPARC**](software/cryosparc.md)
 
--   :material-lifebuoy:{ .lg .middle } **Support**
+    The two instances and how to reach them
 
-    ---
+-   :material-briefcase-outline:{ .lg .middle } [**Run a job**](software/slurm_usage.md)
 
-    - [Troubleshooting](troubleshooting.md)
+    Submit and monitor jobs with Slurm
+
+-   :material-broom:{ .lg .middle } [**Free up storage**](data_cleanup.md)
+
+    What to clear, and what to keep
+
+-   :material-lifebuoy:{ .lg .middle } [**Fix a problem**](troubleshooting.md)
+
+    Common issues and fast fixes
 
 </div>
 

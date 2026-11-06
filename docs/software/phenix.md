@@ -1,4 +1,4 @@
-# Using Phenix
+# Phenix
 
 ## Load Phenix
 
@@ -17,7 +17,8 @@ Most Phenix workflows should run on a compute node, not the login node. Start an
 (ideally inside [screen](screen_usage.md)) and run Phenix there:
 
 ```bash
-srun --partition=p.cryo --ntasks=1 --cpus-per-task=8 --mem=16G --pty bash
+srun --partition=p.cryo --ntasks=1 --cpus-per-task=8 \
+  --mem=16G --pty bash
 ```
 
 ## Use multiple CPU cores

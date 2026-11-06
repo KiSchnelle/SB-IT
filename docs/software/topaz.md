@@ -1,4 +1,4 @@
-# Using Topaz
+# Topaz
 
 ## Load Topaz
 

@@ -111,14 +111,14 @@ nav:
       - Data cleanup: data_cleanup.md
       - Data transfer: data_transfer.md
   - Software:
-      - Slurm usage: software/slurm_usage.md
-      - Using screen: software/screen_usage.md
-      - Using cryoSPARC: software/cryosparc.md
-      - Using Phenix: software/phenix.md
-      - Using Topaz: software/topaz.md
-      - Using EMAN2: software/eman2.md
-      - Using catchEM: software/catchem.md
-      - Using catchem_mount: software/catchem_mount.md
-      - Using crYOLO: software/cryolo.md
+      - Slurm: software/slurm_usage.md
+      - screen: software/screen_usage.md
+      - cryoSPARC: software/cryosparc.md
+      - Phenix: software/phenix.md
+      - Topaz: software/topaz.md
+      - EMAN2: software/eman2.md
+      - catchEM: software/catchem.md
+      - catchem_mount: software/catchem_mount.md
+      - crYOLO: software/cryolo.md
   - Support:
       - Troubleshooting: troubleshooting.md

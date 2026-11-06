@@ -1,4 +1,4 @@
-# Using screen for long-running shells
+# screen
 
 `screen` keeps your shell running when you disconnect, so interactive Slurm jobs and long commands survive
 a dropped network connection or a closed laptop.
@@ -10,7 +10,8 @@ Start `screen` **on the login node**, right after you connect — and then start
 
 ```bash
 screen -S myrun
-srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --time=02:00:00 --pty bash
+srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 \
+  --mem=8G --time=02:00:00 --pty bash
 ```
 
 !!! warning "Not the other way round"

@@ -1,4 +1,4 @@
-# Slurm usage guidelines
+# Slurm
 
 - Use `sbatch` to submit jobs to the queue.
 - Use `squeue` to check the status of your jobs.
@@ -8,7 +8,8 @@
 For interactive jobs, use `srun`. For example:
 
 ```bash
-srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --pty bash
+srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 \
+  --mem=8G --pty bash
 ```
 
 This allocates 1 task with 4 CPUs and 8 GB of memory on the `p.cryo` partition and opens a bash shell.
@@ -92,7 +93,8 @@ In a job script:
 For an interactive session:
 
 ```bash
-srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --time=02:00:00 --pty bash
+srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 \
+  --mem=8G --time=02:00:00 --pty bash
 ```
 
 ## GPU jobs
@@ -118,7 +120,8 @@ run `srun` inside it, so the job survives if your network drops:
 
 ```bash
 screen -S myrun
-srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 --mem=8G --time=02:00:00 --pty bash
+srun --partition=p.cryo --ntasks=1 --cpus-per-task=4 \
+  --mem=8G --time=02:00:00 --pty bash
 ```
 
 ## Job arrays
@@ -191,7 +194,8 @@ You can also request a specific node if needed:
 Check the actual CPU, memory, and runtime usage after a job finishes:
 
 ```bash
-sacct -j <job_id> --format=JobID,State,Elapsed,MaxRSS,ReqMem,AllocCPUS
+sacct -j <job_id> \
+  --format=JobID,State,Elapsed,MaxRSS,ReqMem,AllocCPUS
 ```
 
 `MaxRSS` is the peak memory the job actually used — use it to size `--mem` for the next, similar job.

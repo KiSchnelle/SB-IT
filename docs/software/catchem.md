@@ -1,4 +1,4 @@
-# Using catchEM
+# catchEM
 
 catchEM picks particles and segments liposomes in your micrographs with trained models, and comes with
 helpers for projects and cryoSPARC data. It has two command-line tools and a web dashboard:
@@ -47,7 +47,8 @@ screen -S catchem-run
 Then request an interactive Slurm session. Adjust partition, CPUs, memory and GPUs to your dataset:
 
 ```bash
-srun --partition=p.cryo --ntasks=1 --cpus-per-task=30 --mem=300G --gres=gpu:4 --pty bash
+srun --partition=p.cryo --ntasks=1 --cpus-per-task=30 \
+  --mem=300G --gres=gpu:4 --pty bash
 ```
 
 Once on the node, load the environment as shown [above](#load-the-catchem-environment) and run your
@@ -93,9 +94,9 @@ values are **pixels of the original micrograph**: divide a distance in Å by you
 ### Utilities
 
 ```bash
-catchem-utils init-project my-project   # create a project folder, see Session guidelines
-catchem-utils reject-exposures --help   # handle exposures rejected in cryoSPARC
-catchem-utils export-particles --help   # convert cryoSPARC particles to a RELION STAR file
+catchem-utils init-project my-project   # create a project folder
+catchem-utils reject-exposures --help   # rejected cryoSPARC exposures
+catchem-utils export-particles --help   # cryoSPARC particles to RELION
 ```
 
 See [Session and project guidelines](../session_guidelines.md) for when and how to create projects.
